@@ -1,325 +1,319 @@
-#landing-page{
-    background-image: url("../assets/franklin-cad.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(255,255,255,0.6);
-    background-attachment: fixed;
-    background-blend-mode: lighten;
-    height: 100%;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+#landing-page {
+  background-image: url("../assets/franklin-cad.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 #landing-page .landing-container {
-    display: flex;
-    /* width: 100%; */
-    padding-top: 20vh;
-    min-height: 80vh;
-    gap: 100px;
+  display: flex;
+  /* width: 100%; */
+  padding-top: 20vh;
+  min-height: 80vh;
+  gap: 100px;
 }
 
-
 #landing-page .title-text {
-    color: var(--primary-font);
-    font-weight: 300;
-    width: 685px;
+  color: var(--primary-font);
+  font-weight: 300;
+  width: 685px;
 }
 
 #landing-page .title-text h2 {
-    font-size: 40px;
-    margin: 0px 0px 20px 0px;
+  font-size: 40px;
+  margin: 0px 0px 20px 0px;
 }
 
 #landing-page .title-text h1 {
-    display: inline-block;
-    font-size: 88px;
-    border-bottom: 2px solid var(--primary-font);
-    margin: 0px 0px 50px 0px;
+  display: inline-block;
+  font-size: 88px;
+  border-bottom: 2px solid var(--primary-font);
+  margin: 0px 0px 50px 0px;
 }
 
 #landing-page .title-text p {
-    font-size: 24px;
-    margin: 0;
+  font-size: 24px;
+  margin: 0;
 }
 
 #landing-page .title-buttons {
-    display: flex;
-    gap: 30px;
-    position: relative;
-    top: 45px;
-    left: 50px;
+  display: flex;
+  gap: 30px;
+  position: relative;
+  top: 45px;
+  left: 50px;
 }
 
+@media (max-width: 1350px) and (min-width: 1001px) {
+  #landing-page .landing-container {
+    gap: 30px;
+  }
+  #landing-page .title-text {
+    width: 550px;
+  }
 
-@media (max-width: 1350px) and (min-width: 1001px){
-    #landing-page .landing-container {
-        gap: 30px;
-    }
-    #landing-page .title-text {
-        width: 550px;
-    }
-
-    #landing-page .title-buttons {
-        left: 30px;
-    }
+  #landing-page .title-buttons {
+    left: 30px;
+  }
 }
 
 @media (max-width: 1000px) {
-    #landing-page .landing-container {
-        max-width: 400px;
-        flex-direction: column-reverse;
-        gap: 30px;
-        align-items: center;
-        padding-top: 100px;
-        justify-content: flex-end;
-        min-height: 90vh;
-    }
-    #landing-page .face-card .socials{
-        display: none !important;
-    }
+  #landing-page .landing-container {
+    max-width: 400px;
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+    padding-top: 100px;
+    justify-content: flex-end;
+    min-height: 90vh;
+  }
+  #landing-page .face-card .socials {
+    display: none !important;
+  }
 
-    #landing-page .title-text {
-        width: 330px;
-    }
+  #landing-page .title-text {
+    width: 330px;
+  }
 
-    #landing-page .title-text h2 {
-        font-size: 32px;
-    }
-    #landing-page .title-text h1 {
-        font-size: 48px;
-    }
-    #landing-page .title-text p {
-        font-size: 20px;
-    }
+  #landing-page .title-text h2 {
+    font-size: 32px;
+  }
+  #landing-page .title-text h1 {
+    font-size: 48px;
+  }
+  #landing-page .title-text p {
+    font-size: 20px;
+  }
 
-    #landing-page .title-buttons {
-        margin-top: 30px;
-        flex-direction: column;
-        left: 0;
-        top: 0;
-        align-items: center;
-    }
+  #landing-page .title-buttons {
+    margin-top: 30px;
+    flex-direction: column;
+    left: 0;
+    top: 0;
+    align-items: center;
+  }
 
-    #landing-page .title-buttons #contact-button {
-        display: none;
-    }
+  #landing-page .title-buttons #contact-button {
+    display: none;
+  }
 }
 
-
-
-
-#landing-page .title-buttons button{
-    font-size: 20px;
-    border-radius: 7px;
-
+#landing-page .title-buttons button {
+  font-size: 20px;
+  border-radius: 7px;
 }
 
 #landing-page .title-buttons #portfolio-button {
-    background-color: var(--accent-primary);
-    color: var(--accent-inverse);
-    border: none;
-    padding: 12px 80px;
-    transition: 0.3s;
+  background-color: var(--accent-primary);
+  color: var(--accent-inverse);
+  border: none;
+  padding: 12px 80px;
+  transition: 0.3s;
 }
 
 #landing-page .title-buttons #portfolio-button:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-    background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: color-mix(
+    in srgb,
+    var(--accent-primary) 90%,
+    var(--accent-inverse) 10%
+  );
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 #landing-page .title-buttons #contact-button {
-    background-color: var(--accent-inverse);
-    color: var(--primary-font);
-    padding: 12px 60px;
-    border: 1px solid color-mix(in srgb, var(--primary-font) 90%, rgba(0,0,0,0) 10%);
-    transition: 0.3s;
+  background-color: var(--accent-inverse);
+  color: var(--primary-font);
+  padding: 12px 60px;
+  border: 1px solid
+    color-mix(in srgb, var(--primary-font) 90%, rgba(0, 0, 0, 0) 10%);
+  transition: 0.3s;
 }
-
 
 #landing-page .title-buttons #contact-button:hover {
-    transform: scale(1.04);
-    cursor: pointer;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  transform: scale(1.04);
+  cursor: pointer;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
-
 #landing-page .face-card {
-    display: inline-block;
-    width: fit-content;
+  display: inline-block;
+  width: fit-content;
 }
 
 #landing-page .face-card img {
-    height: 414px;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  height: 414px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 @media (max-width: 1350px) {
-    #landing-page .face-card img {
-        height: 300px;
-    }
+  #landing-page .face-card img {
+    height: 300px;
+  }
 }
 
 #landing-page .face-card .socials {
-    display: flex;
-    gap: 50px;
-    font-size: 34px;
-    color: var(--primary-font);
-    margin-top: 30px;
+  display: flex;
+  gap: 50px;
+  font-size: 34px;
+  color: var(--primary-font);
+  margin-top: 30px;
 }
 
 #landing-page .face-card .socials a {
-    color: inherit;
-    transition: 0.3s;
+  color: inherit;
+  transition: 0.3s;
 }
 
 #landing-page .face-card .socials a:hover {
-    color: color-mix(in srgb, var(--primary-font) 90%, rgba(0,0,0,0) 10%);
-    transform: scale(1.05);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  color: color-mix(in srgb, var(--primary-font) 90%, rgba(0, 0, 0, 0) 10%);
+  transform: scale(1.05);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
-
 
 #landing-page .featured-container {
-    flex-direction: column;
-    align-items: center;
-    color: var(--primary-font);
-    margin-bottom: 100px;
+  flex-direction: column;
+  align-items: center;
+  color: var(--primary-font);
+  margin-bottom: 100px;
 }
 
-
 #landing-page .featured-container h2 {
-    font-size: 48px;
-    font-weight: 300;
+  font-size: 48px;
+  font-weight: 300;
 }
 
 #landing-page .featued-project-pane {
-    background-color: var(--background-hint);
-    border: 1px solid var(--border-stroke);
-    border-radius: 7px;
-    width: 90%;
-    padding: 50px;
-    display: flex;
-    gap: 50px;
-    max-width: 1190px;
-    position: relative;
-    box-sizing: border-box;
-    align-items: center;
+  background-color: var(--background-hint);
+  border: 1px solid var(--border-stroke);
+  border-radius: 7px;
+  width: 90%;
+  padding: 50px;
+  display: flex;
+  gap: 50px;
+  max-width: 1190px;
+  position: relative;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 #landing-page .featued-project-pane p {
-    margin: 0;
-    line-height: 1.5;
-    margin-top: 20px;
+  margin: 0;
+  line-height: 1.5;
+  margin-top: 20px;
 }
 #landing-page .featued-project-pane h2 {
-    margin: 0;
+  margin: 0;
 }
 #landing-page .featued-project-pane h3 {
-    margin: 0;
-    font-weight: 300;
-    border-bottom: 1.5px solid var(--primary-font);
-    display: block;
-    margin-bottom: 10px;
+  margin: 0;
+  font-weight: 300;
+  border-bottom: 1.5px solid var(--primary-font);
+  display: block;
+  margin-bottom: 10px;
 }
 
 #landing-page .featued-project-pane .youtube {
-    aspect-ratio: 16/9;
-    width: 100%;
-    border-radius: 7px;
-    border: none;
+  aspect-ratio: 16/9;
+  width: 100%;
+  border-radius: 7px;
+  border: none;
 }
 
 #landing-page .featued-project-pane .left a {
-    color: var(--link-color)
+  color: var(--link-color);
 }
 
 #landing-page .featued-project-pane .right {
-    overflow: hidden;
-    flex: 0 0 50%;
+  overflow: hidden;
+  flex: 0 0 50%;
 }
 
 #landing-page .featued-project-pane #featured-action-btn {
-    background-color: var(--accent-primary);
-    color: var(--accent-inverse);
-    padding: 12px 80px;
-    border: none; 
-    border-radius: 7px;
-    font-family: inherit;
-    font-size: 16px;
-    font-weight: 300;
-    margin-top: 30px;
-    transition: 0.3s;
+  background-color: var(--accent-primary);
+  color: var(--accent-inverse);
+  padding: 12px 80px;
+  border: none;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 300;
+  margin-top: 30px;
+  transition: 0.3s;
 }
 
 #landing-page .featued-project-pane #featured-action-btn:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-    background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: color-mix(
+    in srgb,
+    var(--accent-primary) 90%,
+    var(--accent-inverse) 10%
+  );
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 #landing-page .featued-project-pane .aux-link {
-    font-size: 24px;
-    color: var(--primary-font);
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+  font-size: 24px;
+  color: var(--primary-font);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
 }
 
-#landing-page .featued-project-pane .aux-link:hover{
-    cursor: pointer;
+#landing-page .featued-project-pane .aux-link:hover {
+  cursor: pointer;
 }
 
 @media (max-width: 1000px) {
-    #landing-page .featued-project-pane {
-        max-width: 400px;
-        flex-direction: column;
-    }
+  #landing-page .featued-project-pane {
+    max-width: 400px;
+    flex-direction: column;
+  }
 
-    #landing-page .featured-container h2 {
-        font-size: 32px;
-    }
+  #landing-page .featured-container h2 {
+    font-size: 32px;
+  }
 }
 
-
-
-
-
-
 #landing-page .div-bar {
-    height: 100px;
+  height: 100px;
 }
 
 #landing-page .nav-card-container {
-    width: 90%;
-    display: flex;
-    max-width: 1190px;
-    justify-content: space-between;
+  width: 90%;
+  display: flex;
+  max-width: 1190px;
+  justify-content: space-between;
 }
 
 #landing-page .nav-card-container .left {
-    flex: 1;
+  flex: 1;
 }
 
 #landing-page .nav-card-container .right {
-    flex: 1;
-    margin-left: 50px;
+  flex: 1;
+  margin-left: 50px;
 }
 
 @media (max-width: 1000px) {
-    #landing-page .nav-card-container {
-        max-width: 400px;
-        flex-direction: column;
-        gap: 30px;
-    }
+  #landing-page .nav-card-container {
+    max-width: 400px;
+    flex-direction: column;
+    gap: 30px;
+  }
 
-    #landing-page .nav-card-container .right {
-        margin-left: 0px;
-    }
+  #landing-page .nav-card-container .right {
+    margin-left: 0px;
+  }
 }

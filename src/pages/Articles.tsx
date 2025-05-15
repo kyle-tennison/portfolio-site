@@ -26,8 +26,6 @@ export default function Articles() {
           }
           link={"articles/franklin"}
         />
-
-
       </div>
 
       <Footer />

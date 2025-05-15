@@ -8,7 +8,12 @@ interface ArticleCardProps {
   link: string;
 }
 
-const ArticleCard: React.FC<ArticleCardProps> = ({ title, date, description, link }) => {
+const ArticleCard: React.FC<ArticleCardProps> = ({
+  title,
+  date,
+  description,
+  link,
+}) => {
   return (
     <a href={link} className="article-card">
       <div className="article-card-content">

@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/ProjectCard.css';
+import React from "react";
+import "../styles/ProjectCard.css";
 
 interface ProjectCardProps {
   image: string;
@@ -24,7 +24,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       <div className="project-card-content">
         <h2 className="project-card-title">{title}</h2>
         <p className="project-card-description">{description}</p>
-        <button className="project-card-button" type="button" onClick={()=>{window.open(link, '_blank', 'noopener,noreferrer');}}>
+        <button
+          className="project-card-button"
+          type="button"
+          onClick={() => {
+            window.open(link, "_blank", "noopener,noreferrer");
+          }}
+        >
           {buttonText} <div className="project-card-icon">{buttonIcon}</div>
         </button>
       </div>

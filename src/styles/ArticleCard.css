@@ -1,50 +1,50 @@
 .article-card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--background-hint);
-    padding: 1rem 1.25rem;
-    border: 1px solid var(--border-stroke);
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-    color: var(--secondary-font);
-    text-decoration: none;
-    margin: 0 auto;
-    transition: box-shadow 0.3s ease-in-out;
-    font-weight: 100;
-    width: 100%;
-    box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-hint);
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-stroke);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  color: var(--secondary-font);
+  text-decoration: none;
+  margin: 0 auto;
+  transition: box-shadow 0.3s ease-in-out;
+  font-weight: 100;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .article-card:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .article-card .article-card-content {
-    max-width: 90%;
+  max-width: 90%;
 }
 
 .article-card .article-card-title {
-    margin: 5px 0px; 
-    font-size: 1rem;
-    color: var(--primary-font);
-    font-weight: 500;
+  margin: 5px 0px;
+  font-size: 1rem;
+  color: var(--primary-font);
+  font-weight: 500;
 }
 .article-card .article-card-title em {
-    color: var(--secondary-font);
-    font-weight: 300;
+  color: var(--secondary-font);
+  font-weight: 300;
 }
 
 .article-card .article-card-description {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.25rem;
-    color: var(--secondary-font);
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.25rem;
+  color: var(--secondary-font);
 }
 
 .article-card .article-card-icon {
-    width: 20px;
-    height: 20px;
-    color: var(--secondary-font);
-    flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--secondary-font);
+  flex-shrink: 0;
 }

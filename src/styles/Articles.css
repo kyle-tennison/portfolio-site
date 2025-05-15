@@ -1,44 +1,44 @@
 #articles-page {
-    background-image: url("../assets/fusor-cad.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: rgba(255,255,255,0.8);
-    background-attachment: fixed;
-    background-blend-mode: lighten;
-    height: 100%;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    color: var(--primary-font);
-    align-items: center;
+  background-image: url("../assets/fusor-cad.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+  height: 100%;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--primary-font);
+  align-items: center;
 }
 
 #articles-page .title-text {
-    width: 90%;
-    max-width: 1130px;
-    margin: 100px 50px 50px 50px;
-    border-bottom: 1.5px solid var(--primary-font);
+  width: 90%;
+  max-width: 1130px;
+  margin: 100px 50px 50px 50px;
+  border-bottom: 1.5px solid var(--primary-font);
 }
 #articles-page .title-text h1 {
-    font-size: 48px;
-    font-weight: 300;
-    margin: 0;
+  font-size: 48px;
+  font-weight: 300;
+  margin: 0;
 }
 #articles-page .title-text p {
-    font-size: 16px;
-    font-weight: 300;
-    margin: 5px;
+  font-size: 16px;
+  font-weight: 300;
+  margin: 5px;
 }
 
 #articles-page .card-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    position: relative;
-    max-width: 1130px;
-    width: 90%;
-    min-height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  max-width: 1130px;
+  width: 90%;
+  min-height: calc(100vh - 90px);
 }
