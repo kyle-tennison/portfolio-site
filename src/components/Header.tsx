@@ -7,10 +7,10 @@ export default function Header() {
         </div>
         <div className="right">
             <nav>
-                <a href="/contact" className="averia-serif-libre-light">Contact</a>
-                <a href="/resume" className="averia-serif-libre-light">Resume</a>
+                <a href="/articles/contact" className="averia-serif-libre-light">Contact</a>
+                <a href="/resume.pdf" target="_blank" referrerPolicy="no-referrer" className="averia-serif-libre-light">Resume</a>
                 <a href="/projects" className="averia-serif-libre-light">Projects</a>
-                <a href="/articles" className="averia-serif-libre-light">Articles</a>
+                <a href="/articles" className="averia-serif-libre-light">Articles</a>  
             </nav>
         </div>
     </div>
