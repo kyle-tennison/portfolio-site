@@ -1,4 +1,4 @@
-#landing-page{
+#landing-page #landing-page{
     background-image: url("../assets/franklin-cad.png");
     background-size: cover;
     background-repeat: no-repeat;
@@ -14,7 +14,7 @@
     overflow: hidden;
 }
 
-.landing-container {
+#landing-page .landing-container {
     display: flex;
     /* width: 100%; */
     padding-top: 20vh;
@@ -23,30 +23,30 @@
 }
 
 
-.title-text {
+#landing-page .title-text {
     color: var(--primary-font);
     font-weight: 300;
     width: 685px;
 }
 
-.title-text h2 {
+#landing-page .title-text h2 {
     font-size: 40px;
     margin: 0px 0px 20px 0px;
 }
 
-.title-text h1 {
+#landing-page .title-text h1 {
     display: inline-block;
     font-size: 88px;
     border-bottom: 2px solid var(--primary-font);
     margin: 0px 0px 50px 0px;
 }
 
-.title-text p {
+#landing-page .title-text p {
     font-size: 24px;
     margin: 0;
 }
 
-.title-buttons {
+#landing-page .title-buttons {
     display: flex;
     gap: 30px;
     position: relative;
@@ -56,20 +56,20 @@
 
 
 @media (max-width: 1350px) and (min-width: 1001px){
-    .landing-container {
+    #landing-page .landing-container {
         gap: 30px;
     }
-    .title-text {
+    #landing-page .title-text {
         width: 550px;
     }
 
-    .title-buttons {
+    #landing-page .title-buttons {
         left: 30px;
     }
 }
 
 @media (max-width: 1000px) {
-    .landing-container {
+    #landing-page .landing-container {
         max-width: 400px;
         flex-direction: column-reverse;
         gap: 30px;
@@ -78,25 +78,25 @@
         justify-content: flex-end;
         min-height: 90vh;
     }
-    .face-card .socials{
+    #landing-page .face-card .socials{
         display: none !important;
     }
 
-    .title-text {
+    #landing-page .title-text {
         width: 330px;
     }
 
-    .title-text h2 {
+    #landing-page .title-text h2 {
         font-size: 32px;
     }
-    .title-text h1 {
+    #landing-page .title-text h1 {
         font-size: 48px;
     }
-    .title-text p {
+    #landing-page .title-text p {
         font-size: 20px;
     }
 
-    .title-buttons {
+    #landing-page .title-buttons {
         margin-top: 30px;
         flex-direction: column;
         left: 0;
@@ -104,7 +104,7 @@
         align-items: center;
     }
 
-    .title-buttons #contact-button {
+    #landing-page .title-buttons #contact-button {
         display: none;
     }
 }
@@ -112,13 +112,13 @@
 
 
 
-.title-buttons button{
+#landing-page .title-buttons button{
     font-size: 20px;
     border-radius: 7px;
 
 }
 
-.title-buttons #portfolio-button {
+#landing-page .title-buttons #portfolio-button {
     background-color: var(--accent-primary);
     color: var(--accent-inverse);
     border: none;
@@ -126,14 +126,14 @@
     transition: 0.3s;
 }
 
-.title-buttons #portfolio-button:hover {
+#landing-page .title-buttons #portfolio-button:hover {
     transform: scale(1.05);
     cursor: pointer;
     background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
-.title-buttons #contact-button {
+#landing-page .title-buttons #contact-button {
     background-color: var(--accent-inverse);
     color: var(--primary-font);
     padding: 12px 60px;
@@ -142,30 +142,30 @@
 }
 
 
-.title-buttons #contact-button:hover {
+#landing-page .title-buttons #contact-button:hover {
     transform: scale(1.04);
     cursor: pointer;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 
-.face-card {
+#landing-page .face-card {
     display: inline-block;
     width: fit-content;
 }
 
-.face-card img {
+#landing-page .face-card img {
     height: 414px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 @media (max-width: 1350px) {
-    .face-card img {
+    #landing-page .face-card img {
         height: 300px;
     }
 }
 
-.face-card .socials {
+#landing-page .face-card .socials {
     display: flex;
     gap: 50px;
     font-size: 34px;
@@ -173,19 +173,19 @@
     margin-top: 30px;
 }
 
-.face-card .socials a {
+#landing-page .face-card .socials a {
     color: inherit;
     transition: 0.3s;
 }
 
-.face-card .socials a:hover {
+#landing-page .face-card .socials a:hover {
     color: color-mix(in srgb, var(--primary-font) 90%, rgba(0,0,0,0) 10%);
     transform: scale(1.05);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 
-.featured-container {
+#landing-page .featured-container {
     flex-direction: column;
     align-items: center;
     color: var(--primary-font);
@@ -193,12 +193,12 @@
 }
 
 
-.featured-container h2 {
+#landing-page .featured-container h2 {
     font-size: 48px;
     font-weight: 300;
 }
 
-.featued-project-pane {
+#landing-page .featued-project-pane {
     background-color: var(--background-hint);
     border: 1px solid var(--border-stroke);
     border-radius: 7px;
@@ -212,15 +212,15 @@
     align-items: center;
 }
 
-.featued-project-pane p {
+#landing-page .featued-project-pane p {
     margin: 0;
     line-height: 1.5;
     margin-top: 20px;
 }
-.featued-project-pane h2 {
+#landing-page .featued-project-pane h2 {
     margin: 0;
 }
-.featued-project-pane h3 {
+#landing-page .featued-project-pane h3 {
     margin: 0;
     font-weight: 300;
     border-bottom: 1.5px solid var(--primary-font);
@@ -228,23 +228,23 @@
     margin-bottom: 10px;
 }
 
-.featued-project-pane .youtube {
+#landing-page .featued-project-pane .youtube {
     aspect-ratio: 16/9;
     width: 100%;
     border-radius: 7px;
     border: none;
 }
 
-.featued-project-pane .left a {
+#landing-page .featued-project-pane .left a {
     color: var(--link-color)
 }
 
-.featued-project-pane .right {
+#landing-page .featued-project-pane .right {
     overflow: hidden;
     flex: 0 0 50%;
 }
 
-.featued-project-pane #featured-action-btn {
+#landing-page .featued-project-pane #featured-action-btn {
     background-color: var(--accent-primary);
     color: var(--accent-inverse);
     padding: 12px 80px;
@@ -257,14 +257,14 @@
     transition: 0.3s;
 }
 
-.featued-project-pane #featured-action-btn:hover {
+#landing-page .featued-project-pane #featured-action-btn:hover {
     transform: scale(1.05);
     cursor: pointer;
     background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
-.featued-project-pane .aux-link {
+#landing-page .featued-project-pane .aux-link {
     font-size: 24px;
     color: var(--primary-font);
     position: absolute;
@@ -272,17 +272,17 @@
     right: 10px;
 }
 
-.featued-project-pane .aux-link:hover{
+#landing-page .featued-project-pane .aux-link:hover{
     cursor: pointer;
 }
 
 @media (max-width: 1000px) {
-    .featued-project-pane {
+    #landing-page .featued-project-pane {
         max-width: 400px;
         flex-direction: column;
     }
 
-    .featured-container h2 {
+    #landing-page .featured-container h2 {
         font-size: 32px;
     }
 }
@@ -292,34 +292,34 @@
 
 
 
-.div-bar {
+#landing-page .div-bar {
     height: 100px;
 }
 
-.nav-card-container {
+#landing-page .nav-card-container {
     width: 90%;
     display: flex;
     max-width: 1190px;
     justify-content: space-between;
 }
 
-.nav-card-container .left {
+#landing-page .nav-card-container .left {
     flex: 1;
 }
 
-.nav-card-container .right {
+#landing-page .nav-card-container .right {
     flex: 1;
     margin-left: 50px;
 }
 
 @media (max-width: 1000px) {
-    .nav-card-container {
+    #landing-page .nav-card-container {
         max-width: 400px;
         flex-direction: column;
         gap: 30px;
     }
 
-    .nav-card-container .right {
+    #landing-page .nav-card-container .right {
         margin-left: 0px;
     }
 }
