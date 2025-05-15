@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import "../styles/Landing.css"
 import Header from '../components/Header';
 import ClickableCard from '../components/ClickableCard';
@@ -10,10 +8,6 @@ import paperScreenshot from "../assets/paper-screenshot.png"
 import Footer from '../components/Footer';
 
 export default function Landing() {
-
-    const [isMobile, setIsMobile] = useState(false);
-
-
 
     return <div id="landing-page">
     <Header />
@@ -31,7 +25,6 @@ export default function Landing() {
             </div>
             <div className='face-card'>
                 <img src={portrait}></img>
-                { !isMobile && <>
                     
                     <div className='socials horiz-center'>
                         <a target="_blank" rel="noopener noreferrer" href="https://x.com/kyletennison"><i className="bi bi-twitter-x"></i></a>
@@ -39,8 +32,6 @@ export default function Landing() {
                         <a target="_blank" rel="noopener noreferrer" href="https://github.com/kyle-tennison"><i className="bi bi-github"></i></a>
                     </div>
                 
-                
-                    </> }
             </div>
         </div>
 
