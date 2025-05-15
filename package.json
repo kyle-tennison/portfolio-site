@@ -10,15 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "better-react-mathjax": "^2.3.0",
     "bootstrap-icons": "^1.13.1",
+    "katex": "^0.16.22",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-katex": "^3.1.0",
     "react-router-dom": "^7.6.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
+    "@types/react-katex": "^3.0.4",
     "@vitejs/plugin-react-swc": "^3.9.0",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",

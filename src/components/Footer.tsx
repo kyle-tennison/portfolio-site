@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <p>
           Built with TypeScript React; website source available on{" "}
           <a
-            href="https://github.com/kyletennison"
+            href="http://github.com/kyle-tennison/portfolio-site"
             target="_blank"
             rel="noopener noreferrer"
             className="footer-link"

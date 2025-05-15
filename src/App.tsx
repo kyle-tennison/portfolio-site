@@ -6,6 +6,7 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Landing from './pages/Landing'
 import Articles from './pages/Articles'
 import Projects from './pages/Projects'
+import FranklinArticle from './articles/Franklin'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,11 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/articles" element={<Articles />} />
         <Route path="/projects" element={<Projects />} />
+
+        {/* Article Routes */}
+        <Route path="/articles/franklin" element={<FranklinArticle />} />
+
+
       </Routes>
     </BrowserRouter>
     </>
