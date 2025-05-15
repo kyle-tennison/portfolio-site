@@ -1,5 +1,4 @@
 import GenericArticle from "../pages/GenericArticle";
-import { Toaster, toast } from 'react-hot-toast';
 
 
 export default function ContactArticle() {

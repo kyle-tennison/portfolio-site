@@ -56,7 +56,7 @@ export default function Landing() {
 
             <div className='right'>
             <iframe className='youtube'
-                src="https://www.youtube.com/embed/sunjmzSDeiw?rel=0"
+                src="https://www.youtube.com/embed/hQI-8Ccv2nw?si=IRNwOBEsqSRRqJPh?rel=0"
                 title="YouTube video player"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
