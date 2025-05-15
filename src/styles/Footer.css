@@ -88,3 +88,13 @@
   .footer-right ul li a:focus {
     text-decoration: underline;
   }
+
+
+  @media (max-width: 1000px) {
+    .footer {
+      grid-template-columns: 1fr 1fr;
+    }
+    .footer-center {
+      display: none;
+    }
+  }

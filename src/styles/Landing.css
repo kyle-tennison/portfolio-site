@@ -11,6 +11,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 .landing-container {
@@ -20,6 +21,7 @@
     min-height: 80vh;
     gap: 100px;
 }
+
 
 .title-text {
     color: var(--primary-font);
@@ -51,6 +53,64 @@
     top: 45px;
     left: 50px;
 }
+
+
+@media (max-width: 1350px) and (min-width: 1001px){
+    .landing-container {
+        gap: 30px;
+    }
+    .title-text {
+        width: 550px;
+    }
+
+    .title-buttons {
+        left: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .landing-container {
+        max-width: 400px;
+        flex-direction: column-reverse;
+        gap: 30px;
+        align-items: center;
+        padding-top: 100px;
+        justify-content: flex-end;
+        min-height: 90vh;
+    }
+    .face-card .socials{
+        display: none !important;
+    }
+
+    .title-text {
+        width: 330px;
+    }
+
+    .title-text h2 {
+        font-size: 32px;
+    }
+    .title-text h1 {
+        font-size: 48px;
+    }
+    .title-text p {
+        font-size: 20px;
+    }
+
+    .title-buttons {
+        margin-top: 30px;
+        flex-direction: column;
+        left: 0;
+        top: 0;
+        align-items: center;
+    }
+
+    .title-buttons #contact-button {
+        display: none;
+    }
+}
+
+
+
 
 .title-buttons button{
     font-size: 20px;
@@ -99,6 +159,12 @@
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
+@media (max-width: 1350px) {
+    .face-card img {
+        height: 300px;
+    }
+}
+
 .face-card .socials {
     display: flex;
     gap: 50px;
@@ -143,6 +209,7 @@
     max-width: 1190px;
     position: relative;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .featued-project-pane p {
@@ -209,6 +276,22 @@
     cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+    .featued-project-pane {
+        max-width: 400px;
+        flex-direction: column;
+    }
+
+    .featured-container h2 {
+        font-size: 32px;
+    }
+}
+
+
+
+
+
+
 .div-bar {
     height: 100px;
 }
@@ -227,4 +310,16 @@
 .nav-card-container .right {
     flex: 1;
     margin-left: 50px;
+}
+
+@media (max-width: 1000px) {
+    .nav-card-container {
+        max-width: 400px;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .nav-card-container .right {
+        margin-left: 0px;
+    }
 }

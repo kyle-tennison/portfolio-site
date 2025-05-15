@@ -25,8 +25,8 @@ export default function Landing() {
                 <h1 className="averia-serif-libre-light">Kyle Tennison</h1>
                 <p className="averia-serif-libre-light">I'm a Mechanical Engineering undergraduate at Georgia Tech and a former Computer Science major. This website features everything I've been up to. Take a look around — you might find something cool.</p>
                 <div className='title-buttons'>
-                    <button id="portfolio-button" className="averia-serif-libre-light">Portfolio</button>
-                    <button id="contact-button" className="averia-serif-libre-light">Contact</button>
+                    <button id="portfolio-button" className="averia-serif-libre-light" onClick={()=>{window.location.pathname = '/projects'}}>Portfolio</button>
+                    <button id="contact-button" className="averia-serif-libre-light" onClick={()=>{window.location.pathname = '/contact'}}>Contact</button>
                 </div>
             </div>
             <div className='face-card'>
@@ -71,10 +71,10 @@ export default function Landing() {
                 allowFullScreen
             />
             <div className='horiz-center'>
-                <button id="featured-action-btn">Try it yourself</button>
+                <button id="featured-action-btn" onClick={()=>{window.open('https://ragposium.com', '_blank', 'noopener,noreferrer');}}>Try it yourself</button>
             </div>
             </div>
-            <a className="aux-link">
+            <a className="aux-link" href="https://github.com/kyle-tennison/ragposium" target="_blank" rel="noopener noreferrer">
                 <i className="bi bi-github"></i>
             </a>
         </div>
@@ -82,8 +82,8 @@ export default function Landing() {
     <div className='div-bar' />
 
     <div className='nav-card-container'>
-        <ClickableCard className="left" image={kicadScreenshot} title={'Full Portfolio'} description={'More of my personal & team projects can be found here on my portfolio.'} link={'google.com'} />
-        <ClickableCard className="right" image={paperScreenshot} title={'Articles and Papers'} description={'Self-authored papers, blogs, and miscellaneous articles can be found here.'} link={'google.com'} />
+        <ClickableCard className="left" image={kicadScreenshot} title={'Full Portfolio'} description={'More of my personal & team projects can be found here on my portfolio.'} link={'projects'} />
+        <ClickableCard className="right" image={paperScreenshot} title={'Articles and Papers'} description={'Self-authored papers, blogs, and miscellaneous articles can be found here.'} link={'articles'} />
 
     </div>
     </div>
