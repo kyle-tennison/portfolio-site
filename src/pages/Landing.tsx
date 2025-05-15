@@ -7,6 +7,7 @@ import ClickableCard from '../components/ClickableCard';
 import portrait from "../assets/my-dumbass.png"
 import kicadScreenshot from "../assets/kicad-screenshot.png"
 import paperScreenshot from "../assets/paper-screenshot.png"
+import Footer from '../components/Footer';
 
 export default function Landing() {
 
@@ -86,6 +87,8 @@ export default function Landing() {
 
     </div>
     </div>
+
+    <Footer />
 
     
     </div>;
