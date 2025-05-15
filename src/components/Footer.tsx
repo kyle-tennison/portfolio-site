@@ -55,12 +55,12 @@ const Footer: React.FC = () => {
         <h3>Navigation</h3>
         <ul>
           <li>
-            <a href="/resume" className="footer-link">
+            <a href="/resume.pdf" className="footer-link">
               Resume
             </a>
           </li>
           <li>
-            <a href="/contact" className="footer-link">
+            <a href="/articles/contact" className="footer-link">
               Contact
             </a>
           </li>

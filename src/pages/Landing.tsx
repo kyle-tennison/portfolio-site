@@ -20,7 +20,7 @@ export default function Landing() {
                 <p className="averia-serif-libre-light">I'm a Mechanical Engineering undergraduate at Georgia Tech and a former Computer Science major. This website features everything I've been up to. Take a look around — you might find something cool.</p>
                 <div className='title-buttons'>
                     <button id="portfolio-button" className="averia-serif-libre-light" onClick={()=>{window.location.pathname = '/projects'}}>Portfolio</button>
-                    <button id="contact-button" className="averia-serif-libre-light" onClick={()=>{window.location.pathname = '/contact'}}>Contact</button>
+                    <button id="contact-button" className="averia-serif-libre-light" onClick={()=>{window.location.pathname = '/articles/contact'}}>Contact</button>
                 </div>
             </div>
             <div className='face-card'>

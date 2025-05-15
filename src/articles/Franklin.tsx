@@ -9,6 +9,9 @@ export default function FranklinArticle(){
             title="Franklin" date="February 2024" description="All about Franklin: my 3D printed self-balancing robot" readTime="3 minutes" titleImage="https://polybrain.b-cdn.net/contribute-art.png"    
     >
 
+    <p>This article is for testing purposes.</p>
+
+
     <h1>Header 1</h1>
     <p>Paragraph</p>
     <h2>Header 2</h2>

@@ -1,13 +1,17 @@
 import './App.css'
 import { BrowserRouter,  Route, Routes } from 'react-router-dom'
+import { Toaster, toast } from 'react-hot-toast';
 import Landing from './pages/Landing'
 import Articles from './pages/Articles'
 import Projects from './pages/Projects'
 import FranklinArticle from './articles/Franklin'
+import ContactArticle from './articles/Contact'
 
 function App() {
+  window.alert = (msg) => toast(msg); // override alert
   return (
     <>
+      <Toaster />
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -16,6 +20,7 @@ function App() {
 
         {/* Article Routes */}
         <Route path="/articles/franklin" element={<FranklinArticle />} />
+        <Route path="/articles/contact" element={<ContactArticle />} />
 
 
       </Routes>
