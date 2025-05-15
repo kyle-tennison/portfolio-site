@@ -70,6 +70,7 @@
     transform: scale(1.05);
     cursor: pointer;
     background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 .title-buttons #contact-button {
@@ -84,6 +85,7 @@
 .title-buttons #contact-button:hover {
     transform: scale(1.04);
     cursor: pointer;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 
@@ -113,6 +115,7 @@
 .face-card .socials a:hover {
     color: color-mix(in srgb, var(--primary-font) 90%, rgba(0,0,0,0) 10%);
     transform: scale(1.05);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 
@@ -139,6 +142,7 @@
     gap: 50px;
     max-width: 1190px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .featued-project-pane p {
@@ -190,6 +194,7 @@
     transform: scale(1.05);
     cursor: pointer;
     background-color: color-mix(in srgb, var(--accent-primary) 90%, var(--accent-inverse) 10%);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 .featued-project-pane .aux-link {
@@ -202,4 +207,24 @@
 
 .featued-project-pane .aux-link:hover{
     cursor: pointer;
+}
+
+.div-bar {
+    height: 100px;
+}
+
+.nav-card-container {
+    width: 90%;
+    display: flex;
+    max-width: 1190px;
+    justify-content: space-between;
+}
+
+.nav-card-container .left {
+    flex: 1;
+}
+
+.nav-card-container .right {
+    flex: 1;
+    margin-left: 50px;
 }

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 
-import portrait from "../assets/my-dumbass.png"
 import "../styles/Landing.css"
 import Header from '../components/Header';
+import ClickableCard from '../components/ClickableCard';
+
+import portrait from "../assets/my-dumbass.png"
+import kicadScreenshot from "../assets/kicad-screenshot.png"
+import paperScreenshot from "../assets/paper-screenshot.png"
 
 export default function Landing() {
 
@@ -74,7 +78,15 @@ export default function Landing() {
             </a>
         </div>
 
+    <div className='div-bar' />
+
+    <div className='nav-card-container'>
+        <ClickableCard className="left" image={kicadScreenshot} title={'Full Portfolio'} description={'More of my personal & team projects can be found here on my portfolio.'} link={'google.com'} />
+        <ClickableCard className="right" image={paperScreenshot} title={'Articles and Papers'} description={'Self-authored papers, blogs, and miscellaneous articles can be found here.'} link={'google.com'} />
+
     </div>
+    </div>
+
     
     </div>;
 }
