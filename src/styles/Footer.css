@@ -91,11 +91,21 @@
   }
 
 
-  @media (max-width: 1000px) {
-    .footer .footer {
-      grid-template-columns: 1fr 1fr;
-    }
-    .footer .footer-center {
-      display: none;
-    }
+@media (max-width: 1000px) and (min-width: 600px)  {
+  .footer {
+    grid-template-columns: 1fr 1fr;
   }
+  .footer .footer-center {
+    display: none;
+  }
+}
+
+@media (max-width: 600px){
+  .footer {
+    padding: 20px 40px;
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer .footer-center {
+    display: none;
+  }
+}
