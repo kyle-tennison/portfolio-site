@@ -9,6 +9,8 @@
     gap: 20px; /* optional spacing */
     flex-wrap: nowrap; /* remove flex-wrap */
     padding: 20px 80px;
+    width: 100%;
+    box-sizing: border-box;
   }
   
 .footer .footer-left {

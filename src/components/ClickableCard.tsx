@@ -11,7 +11,7 @@ interface CardProps {
 
 const ClickableCard: React.FC<CardProps> = ({ image, title, description, link, className }) => {
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className={`card ${className}`}>
+    <a href={link} target="_blank" rel="noopener noreferrer" id="card" className={`${className}`}>
       <img src={image} alt={title} className="card-image" />
       <div className="card-content">
         <h2 className="card-title">{title}</h2>
