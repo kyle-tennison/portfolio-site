@@ -43,7 +43,6 @@
   min-height: calc(100vh - 90px);
 }
 
-
 @media (max-width: 768px) {
   #articles-page {
     background-image: url("../assets/fusor-cad.png");

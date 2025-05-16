@@ -1,4 +1,4 @@
-#header {
+#header .header-bar {
   background-color: var(--header-bk);
   color: var(--header-font);
   display: flex;
@@ -12,7 +12,7 @@
   left: 0;
   top: 0;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 5;
 }
 
 #header a {
@@ -22,6 +22,8 @@
 
 #header .right {
   flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
 }
 
 #header .logo {
@@ -39,4 +41,61 @@
 
 #header nav a {
   margin: 20px;
+}
+
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-menu {
+  z-index: 3 !important;
+  width: 200px !important;
+}
+
+.bm-burger-button {
+  display: none;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  #header nav {
+    text-align: center;
+  }
+
+  .bm-burger-button {
+    display: block;
+    position: fixed;
+    width: 24px;
+    height: 24px;
+    right: 16px;
+    top: 16px;
+  }
+
+  .bm-menu {
+    display: block !important;
+  }
+}
+
+.bm-burger-button > i {
+  font-size: 24px;
+  color: var(--header-font);
+}
+
+.bm-menu {
+  display: none;
+  background: var(--header-bk);
+  padding: 5em 1.5em;
+  font-size: 1.15em;
+  position: relative;
+  top: 20px;
+  z-index: 3;
+}
+
+.bm-item {
+  display: block;
+  margin: 0;
 }
