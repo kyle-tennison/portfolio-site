@@ -31,13 +31,14 @@ const GenericArticle: React.FC<ArticleProps> = ({
     <div id="generic-article">
       <Header />
 
-      <div
-        className="title-text"
-        style={{ backgroundImage: `url(${titleImage})` }}
-      >
+      <div className="title-text">
         <h1>{title}</h1>
         <p>{description}</p>
         <p>{`${readTime} read • ${date}`}</p>
+        <div
+          className="background"
+          style={{ backgroundImage: `url(${titleImage})` }}
+        ></div>
       </div>
 
       <div className="article-body">

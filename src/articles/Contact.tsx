@@ -8,7 +8,7 @@ export default function ContactArticle() {
         date="Last Updated 2025"
         description=""
         readTime="1 minute"
-        titleImage="https://polybrain.b-cdn.net/contact-art.webp"
+        titleImage="https://kyletennison.b-cdn.net/contact-art.webp"
       >
         <h2>Contact Methods</h2>
         <p>
