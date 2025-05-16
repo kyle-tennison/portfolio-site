@@ -1,7 +1,5 @@
 import GenericArticle from "../pages/GenericArticle";
 
-import franklinScreenshot from "../assets/franklin-cad.png";
-
 export default function FranklinArticle() {
   return (
     <>
@@ -10,9 +8,9 @@ export default function FranklinArticle() {
         date="February 2024"
         description="All about Franklin: my 3D printed self-balancing robot"
         readTime="0 minutes"
-        titleImage="https://polybrain.b-cdn.net/contribute-art.png"
+        titleImage="https://polybrain.b-cdn.net/contribute-art.webp"
       >
-        <img src={franklinScreenshot} />
+        <img src={"https://kyletennison.b-cdn.net/franklin.webp"} />
 
         <p className="centered">More information on Franklin coming soon.</p>
       </GenericArticle>

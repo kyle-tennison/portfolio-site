@@ -4,16 +4,6 @@ import ProjectCard from "../components/ProjectCard";
 
 import "../styles/Projects.css";
 
-import magentiteImage from "../assets/magnetite-updated.png";
-import onpyImage from "../assets/onpy-logo.png";
-import pyriteImage from "../assets/pyrite.png";
-import polybrainImage from "../assets/polybrain.jpeg";
-import franklinImage from "../assets/franklin.png";
-import me2110Image from "../assets/me2110-robot.png";
-import climberImage from "../assets/climber-screenshot.jpeg";
-import ragposiumImage from "../assets/ragposium.png";
-import avarokScreenshot from "../assets/avarok-screenshot.jpeg";
-
 export default function Projects() {
   return (
     <div id="projects-page">
@@ -29,7 +19,7 @@ export default function Projects() {
 
       <div className="projects-container">
         <ProjectCard
-          image={polybrainImage}
+          image={"https://kyletennison.b-cdn.net/polybrain.webp"}
           title="Polybrain"
           description="An experimental tool for generating parametric OnShape CAD using AI."
           buttonText="View Site"
@@ -38,7 +28,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={magentiteImage}
+          image={"https://kyletennison.b-cdn.net/magnetite-updated.webp"}
           title="Magnetite FEA"
           description="A 2D finite-element, linear elastic simulation program for isotropic materials—written in Rust."
           buttonText="See GitHub"
@@ -47,7 +37,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={onpyImage}
+          image={"https://kyletennison.b-cdn.net/onpy-logo.webp"}
           title="OnPy"
           description="A 3rd party Python API for building 3D models in OnShape."
           buttonText="See GitHub"
@@ -56,7 +46,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={me2110Image}
+          image={"https://kyletennison.b-cdn.net/me2110-robot.webp"}
           title="ME2110 Robot"
           description="My team's Georgia Tech ME2110 robot. 1st place design winner."
           buttonText="Watch Video"
@@ -65,7 +55,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={ragposiumImage}
+          image={"https://kyletennison.b-cdn.net/ragposium.webp"}
           title="Ragposium"
           description="A free, open-source RAG-powered research paper search engine."
           buttonText="View Site"
@@ -74,7 +64,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={franklinImage}
+          image={"https://kyletennison.b-cdn.net/franklin.webp"}
           title="Franklin"
           description="A self-balancing, 3D printed robot friend."
           buttonText="See GitHub"
@@ -83,7 +73,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={climberImage}
+          image={"https://kyletennison.b-cdn.net/climber-screenshot.webp"}
           title="FRC5940 Climber"
           description="Climber Subsystem for FRC Team 5940's 2023 robot."
           buttonText="View Cad"
@@ -92,7 +82,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={pyriteImage}
+          image={"https://kyletennison.b-cdn.net/pyrite.webp"}
           title="Pyrite"
           description="Another 2D finite-element simulator, written in Python with NumPy."
           buttonText="See GitHub"
@@ -101,7 +91,7 @@ export default function Projects() {
         />
 
         <ProjectCard
-          image={avarokScreenshot}
+          image={"https://kyletennison.b-cdn.net/avarok-screenshot.webp"}
           title="Avarok Work"
           description="Front end development for Avarok cybersecurity during an internship."
           buttonText="View Website"

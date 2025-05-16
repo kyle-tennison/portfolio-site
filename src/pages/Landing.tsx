@@ -2,9 +2,6 @@ import "../styles/Landing.css";
 import Header from "../components/Header";
 import ClickableCard from "../components/ClickableCard";
 
-import portrait from "../assets/my-dumbass.png";
-import kicadScreenshot from "../assets/kicad-screenshot.png";
-import paperScreenshot from "../assets/paper-screenshot.png";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -89,7 +86,7 @@ export default function Landing() {
             animate={loaded ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.25 }}
           >
-            <img src={portrait}></img>
+            <img src={"https://kyletennison.b-cdn.net/my-dumbass.webp"}></img>
 
             <div className="socials horiz-center">
               <a
@@ -185,7 +182,7 @@ export default function Landing() {
           <div data-aos="fade-right">
             <ClickableCard
               className="left"
-              image={kicadScreenshot}
+              image={"https://kyletennison.b-cdn.net/kicad-screenshot.webp"}
               title={"Full Portfolio"}
               description={
                 "More of my personal & team projects can be found here on my portfolio."
@@ -196,7 +193,7 @@ export default function Landing() {
           <div data-aos="fade-left">
             <ClickableCard
               className="right"
-              image={paperScreenshot}
+              image={"https://kyletennison.b-cdn.net/paper-screenshot.webp"}
               title={"Articles and Papers"}
               description={
                 "Self-authored papers, blogs, and miscellaneous articles can be found here."
