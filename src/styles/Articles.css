@@ -3,7 +3,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: color-mix(in srgb, var(--background) 80%, transparent);
   background-attachment: fixed;
   background-blend-mode: lighten;
   height: 100%;
@@ -14,6 +14,13 @@
   overflow: hidden;
   color: var(--primary-font);
   align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  #articles-page {
+    background-image: url("https://kyletennison.b-cdn.net/fusor-cad-inverted.webp");
+    background-blend-mode: saturation;
+  }
 }
 
 #articles-page .title-text {

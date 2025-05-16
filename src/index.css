@@ -6,24 +6,35 @@
   --secondary-font: #777777;
   --header-bk: #f4f2ee;
   --header-font: var(--primary-font);
-  /* --header-bk: #444444;
-  --header-font: #ffffff; */
   --accent-primary: #537d5d;
   --accent-inverse: #ffffff;
+  --highlight: #ffffff;
+  --highlight-font: #444444;
   --background-hint: #f4f2ee;
+  --background: #444444;
   --border-stroke: #cdcdcd;
   --link-color: #387847;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
+    --primary-font: #ffffff;
+    --secondary-font: #d3d3d3;
+    --header-bk: #444444;
+    --header-font: var(--primary-font);
+    --highlight: #444444;
+    --highlight-font: #ffffff;
+    --background-hint: #3b3937;
+    --background: #444444;
+    --border-stroke: #cdcdcd;
+    --link-color: #b4dabc;
   }
-} */
+}
 
 body {
   font-family: "Averia Serif Libre", serif;
   margin: 0;
-  background-color: var(white); /* <-- For safari header */
+  background-color: var(--background);
 }
 
 .averia-serif-libre-light {

@@ -3,7 +3,7 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: color-mix(in srgb, var(--background) 80%, transparent);
   background-attachment: fixed;
   background-blend-mode: lighten;
   height: 100%;
@@ -13,6 +13,13 @@
   flex-direction: column;
   overflow: hidden;
   animation: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  #landing-page {
+    background-image: url("https://kyletennison.b-cdn.net/franklin-cad-inverted.webp");
+    background-blend-mode: saturation;
+  }
 }
 
 #landing-page .landing-container {
@@ -60,6 +67,10 @@
   }
   #landing-page .title-text {
     width: 550px;
+  }
+
+  #landing-page .title-text h1 {
+    font-size: 78px;
   }
 
   #landing-page .title-buttons {
@@ -142,8 +153,8 @@
 }
 
 #landing-page .title-buttons #contact-button {
-  background-color: var(--accent-inverse);
-  color: var(--primary-font);
+  background-color: var(--highlight);
+  color: var(--hightlight-font);
   padding: 12px 60px;
   border: 1px solid
     color-mix(in srgb, var(--primary-font) 90%, rgba(0, 0, 0, 0) 10%);
