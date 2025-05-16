@@ -46,3 +46,15 @@
   margin-bottom: 100px;
   align-items: stretch;
 }
+
+@media (max-width: 768px) {
+  #projects-page {
+    background-image: url("../assets/climber-cad.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: scroll;
+    min-height: auto;
+    height: auto;
+  }
+}

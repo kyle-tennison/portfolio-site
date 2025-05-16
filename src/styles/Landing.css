@@ -107,6 +107,18 @@
   }
 }
 
+@media (max-width: 768px) {
+  #landing-page {
+    background-image: url("../assets/franklin-cad.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-attachment: scroll;
+    min-height: auto;
+    height: auto;
+  }
+}
+
 #landing-page .title-buttons button {
   font-size: 20px;
   border-radius: 7px;

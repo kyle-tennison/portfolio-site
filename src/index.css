@@ -4,8 +4,10 @@
 :root {
   --primary-font: #444444;
   --secondary-font: #777777;
-  --header-bk: #444444;
-  --header-font: #ffffff;
+  --header-bk: #f4f2ee;
+  --header-font: var(--primary-font);
+  /* --header-bk: #444444;
+  --header-font: #ffffff; */
   --accent-primary: #537d5d;
   --accent-inverse: #ffffff;
   --background-hint: #f4f2ee;
@@ -21,7 +23,7 @@
 body {
   font-family: "Averia Serif Libre", serif;
   margin: 0;
-  background-color: var(--header-bk); /* <-- For safari header */
+  background-color: var(white); /* <-- For safari header */
 }
 
 .averia-serif-libre-light {
