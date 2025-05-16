@@ -110,10 +110,10 @@
 
 @media (max-width: 768px) {
   #landing-page {
-      background-image: radial-gradient(#cfcfcf 2px, transparent 0);
-      background-size: 30px 30px;
-      animation: scrollDots 10s linear infinite;
-      background-repeat: repeat;
+    background-image: radial-gradient(#cfcfcf 2px, transparent 0);
+    background-size: 30px 30px;
+    animation: scrollDots 10s linear infinite;
+    background-repeat: repeat;
   }
 }
 

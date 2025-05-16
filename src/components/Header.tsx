@@ -5,7 +5,6 @@ import "../styles/Header.css";
 export const Header: React.FC = () => {
   const menuRef = useRef<any>(null);
 
-
   return (
     <header id="header">
       <div className="header-bar">

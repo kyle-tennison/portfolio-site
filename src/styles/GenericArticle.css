@@ -71,7 +71,7 @@
 }
 
 @media (max-width: 768px) {
-  #generic-article .title-text{
+  #generic-article .title-text {
     text-align: center;
     padding: 150px 50px 70px 50px;
   }

@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Landing() {
-
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -23,39 +22,33 @@ export default function Landing() {
     }
   }, []);
 
-
-
   return (
-    <div id="landing-page"  className="dots-bg" >
+    <div id="landing-page" className="dots-bg">
       <Header />
       <div className="horiz-center">
         <div className="landing-container">
           <div className="title-text">
             <motion.div
               initial={{ opacity: 0 }}
-              animate={ loaded ? { opacity: 1 } : {}}
+              animate={loaded ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.3 }}
-              >
+            >
               <h2 className="averia-serif-libre-light">Hi, I'm</h2>
             </motion.div>
 
             <motion.div
-            
               initial={{ opacity: 0 }}
-              animate={ loaded ? { opacity: 1 } : {}}
+              animate={loaded ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.5 }}
-            
             >
               <h1 className="averia-serif-libre-light">Kyle Tennison</h1>
             </motion.div>
 
             <motion.div
-                          initial={{ opacity: 0 }}
-              animate={ loaded ? { opacity: 1 } : {}}
+              initial={{ opacity: 0 }}
+              animate={loaded ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.75 }}
-            
             >
-
               <p className="averia-serif-libre-light">
                 I'm a Mechanical Engineering undergraduate at Georgia Tech and a
                 former Computer Science major. This website features everything
@@ -64,40 +57,37 @@ export default function Landing() {
               </p>
             </motion.div>
             <motion.div
-            
-            initial={{ opacity: 0 }}
-            animate={ loaded ? { opacity: 1 } : {}}
-            transition={{ duration: 0.5, delay: 1.25 }}
-            
+              initial={{ opacity: 0 }}
+              animate={loaded ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 1.25 }}
             >
-            <div className="title-buttons">
-              <button
-                id="portfolio-button"
-                className="averia-serif-libre-light"
-                onClick={() => {
-                  window.location.pathname = "/projects";
-                }}
-              >
-                Portfolio
-              </button>
-              <button
-                id="contact-button"
-                className="averia-serif-libre-light"
-                onClick={() => {
-                  window.location.pathname = "/articles/contact";
-                }}
-              >
-                Contact
-              </button>
-            </div>
-          </motion.div>
+              <div className="title-buttons">
+                <button
+                  id="portfolio-button"
+                  className="averia-serif-libre-light"
+                  onClick={() => {
+                    window.location.pathname = "/projects";
+                  }}
+                >
+                  Portfolio
+                </button>
+                <button
+                  id="contact-button"
+                  className="averia-serif-libre-light"
+                  onClick={() => {
+                    window.location.pathname = "/articles/contact";
+                  }}
+                >
+                  Contact
+                </button>
+              </div>
+            </motion.div>
           </div>
-          <motion.div className="face-card" 
-          
-          initial={{ opacity: 0 }}
-          animate={ loaded ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.25 }}
-          
+          <motion.div
+            className="face-card"
+            initial={{ opacity: 0 }}
+            animate={loaded ? { opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.25 }}
           >
             <img src={portrait}></img>
 
@@ -124,11 +114,7 @@ export default function Landing() {
                 <i className="bi bi-github"></i>
               </a>
             </div>
-          </motion.div 
-          
-
-          
-          >
+          </motion.div>
         </div>
       </div>
       <div className="featured-container horiz-center" data-aos="fade-up">
@@ -197,15 +183,15 @@ export default function Landing() {
 
         <div className="nav-card-container">
           <div data-aos="fade-right">
-          <ClickableCard
-            className="left"
-            image={kicadScreenshot}
-            title={"Full Portfolio"}
-            description={
-              "More of my personal & team projects can be found here on my portfolio."
-            }
-            link={"projects"}
-          />
+            <ClickableCard
+              className="left"
+              image={kicadScreenshot}
+              title={"Full Portfolio"}
+              description={
+                "More of my personal & team projects can be found here on my portfolio."
+              }
+              link={"projects"}
+            />
           </div>
           <div data-aos="fade-left">
             <ClickableCard
