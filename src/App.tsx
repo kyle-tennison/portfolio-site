@@ -6,9 +6,17 @@ import Articles from "./pages/Articles";
 import Projects from "./pages/Projects";
 import FranklinArticle from "./articles/Franklin";
 import ContactArticle from "./articles/Contact";
+import { useEffect } from "react";
+
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function App() {
   window.alert = (msg) => toast(msg); // override alert
+  useEffect(() => {
+    AOS.init({ duration: 500 });
+  }, []);
+
   return (
     <>
       <Toaster />

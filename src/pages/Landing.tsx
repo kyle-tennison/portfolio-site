@@ -6,22 +6,70 @@ import portrait from "../assets/my-dumbass.png";
 import kicadScreenshot from "../assets/kicad-screenshot.png";
 import paperScreenshot from "../assets/paper-screenshot.png";
 import Footer from "../components/Footer";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Landing() {
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const onLoad = () => setLoaded(true);
+    if (document.readyState === "complete") {
+      setLoaded(true);
+    } else {
+      window.addEventListener("load", onLoad);
+      return () => window.removeEventListener("load", onLoad);
+    }
+  }, []);
+
+
+
   return (
     <div id="landing-page"  className="dots-bg" >
       <Header />
       <div className="horiz-center">
         <div className="landing-container">
           <div className="title-text">
-            <h2 className="averia-serif-libre-light">Hi, I'm</h2>
-            <h1 className="averia-serif-libre-light">Kyle Tennison</h1>
-            <p className="averia-serif-libre-light">
-              I'm a Mechanical Engineering undergraduate at Georgia Tech and a
-              former Computer Science major. This website features everything
-              I've been up to. Take a look around — you might find something
-              cool.
-            </p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={ loaded ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.3 }}
+              >
+              <h2 className="averia-serif-libre-light">Hi, I'm</h2>
+            </motion.div>
+
+            <motion.div
+            
+              initial={{ opacity: 0 }}
+              animate={ loaded ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.5 }}
+            
+            >
+              <h1 className="averia-serif-libre-light">Kyle Tennison</h1>
+            </motion.div>
+
+            <motion.div
+                          initial={{ opacity: 0 }}
+              animate={ loaded ? { opacity: 1 } : {}}
+              transition={{ duration: 1, delay: 0.75 }}
+            
+            >
+
+              <p className="averia-serif-libre-light">
+                I'm a Mechanical Engineering undergraduate at Georgia Tech and a
+                former Computer Science major. This website features everything
+                I've been up to. Take a look around — you might find something
+                cool.
+              </p>
+            </motion.div>
+            <motion.div
+            
+            initial={{ opacity: 0 }}
+            animate={ loaded ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5, delay: 1.25 }}
+            
+            >
             <div className="title-buttons">
               <button
                 id="portfolio-button"
@@ -42,8 +90,15 @@ export default function Landing() {
                 Contact
               </button>
             </div>
+          </motion.div>
           </div>
-          <div className="face-card">
+          <motion.div className="face-card" 
+          
+          initial={{ opacity: 0 }}
+          animate={ loaded ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.25 }}
+          
+          >
             <img src={portrait}></img>
 
             <div className="socials horiz-center">
@@ -69,10 +124,14 @@ export default function Landing() {
                 <i className="bi bi-github"></i>
               </a>
             </div>
-          </div>
+          </motion.div 
+          
+
+          
+          >
         </div>
       </div>
-      <div className="featured-container horiz-center">
+      <div className="featured-container horiz-center" data-aos="fade-up">
         <h2>Featured Project</h2>
 
         <div className="featued-project-pane">
@@ -137,6 +196,7 @@ export default function Landing() {
         <div className="div-bar" />
 
         <div className="nav-card-container">
+          <div data-aos="fade-right">
           <ClickableCard
             className="left"
             image={kicadScreenshot}
@@ -146,15 +206,18 @@ export default function Landing() {
             }
             link={"projects"}
           />
-          <ClickableCard
-            className="right"
-            image={paperScreenshot}
-            title={"Articles and Papers"}
-            description={
-              "Self-authored papers, blogs, and miscellaneous articles can be found here."
-            }
-            link={"articles"}
-          />
+          </div>
+          <div data-aos="fade-left">
+            <ClickableCard
+              className="right"
+              image={paperScreenshot}
+              title={"Articles and Papers"}
+              description={
+                "Self-authored papers, blogs, and miscellaneous articles can be found here."
+              }
+              link={"articles"}
+            />
+          </div>
         </div>
       </div>
 

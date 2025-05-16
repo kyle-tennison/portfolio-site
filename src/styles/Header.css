@@ -18,6 +18,11 @@
 #header a {
   color: var(--header-font);
   text-decoration: none;
+  transition: 0.2s;
+}
+
+#header a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 #header .right {
@@ -40,7 +45,9 @@
 }
 
 #header nav a {
-  margin: 20px;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 7px;
 }
 
 .desktop-nav {
