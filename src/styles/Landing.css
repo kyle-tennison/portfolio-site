@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  animation: none;
 }
 
 #landing-page .landing-container {
@@ -109,13 +110,10 @@
 
 @media (max-width: 768px) {
   #landing-page {
-    background-image: url("../assets/franklin-cad.png");
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-attachment: scroll;
-    min-height: auto;
-    height: auto;
+      background-image: radial-gradient(#cfcfcf 2px, transparent 0);
+      background-size: 30px 30px;
+      animation: scrollDots 10s linear infinite;
+      background-repeat: repeat;
   }
 }
 

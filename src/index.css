@@ -66,3 +66,19 @@ body {
   display: flex;
   justify-content: center;
 }
+
+.dots-bg {
+  background-color: #fff;
+  background-image: radial-gradient(#ac1414 1px, transparent 0);
+  background-size: 30px 30px;
+  animation: scrollDots 10s linear infinite;
+}
+
+@keyframes scrollDots {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 30px 30px;
+  }
+}
