@@ -12,7 +12,7 @@
   left: 0;
   top: 0;
   box-sizing: border-box;
-  z-index: 100;
+  z-index: 1000;
 }
 
 #header a {
@@ -55,13 +55,13 @@
 }
 
 .mobile-menu {
-  z-index: 3 !important;
+  z-index: 800 !important;
   width: 200px !important;
 }
 
 .bm-burger-button {
   display: none;
-  z-index: 10;
+  z-index: 900;
 }
 
 @media (max-width: 768px) {
