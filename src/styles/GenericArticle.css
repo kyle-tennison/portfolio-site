@@ -69,8 +69,10 @@
   box-sizing: border-box;
 }
 
-#generic-article .article-body img {
-  width: 50%;
+#generic-article .article-body img, video {
+  max-width: 50%;
+  max-height: 500px;
+  aspect-ratio: auto;
   display: block;
   margin: 15px auto;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -92,9 +94,15 @@
   text-decoration: underline;
 }
 
+#generic-article .article-body .code {
+  font-family:'Courier New', Courier, monospace;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   #generic-article .title-text {
     text-align: center;
     padding: 150px 50px 70px 50px;
   }
 }
+
