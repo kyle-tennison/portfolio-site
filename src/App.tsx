@@ -4,8 +4,8 @@ import { Toaster, toast } from "react-hot-toast";
 import Landing from "./pages/Landing";
 import Articles from "./pages/Articles";
 import Projects from "./pages/Projects";
-import FranklinArticle from "./articles/Franklin";
-import ContactArticle from "./articles/Contact";
+import FranklinArticle from "./articles/Franklin/Franklin";
+import ContactArticle from "./articles/Contact/Contact";
 import { useEffect } from "react";
 
 import AOS from "aos";
