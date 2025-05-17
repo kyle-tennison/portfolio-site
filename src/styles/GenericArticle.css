@@ -104,5 +104,11 @@
     text-align: center;
     padding: 150px 50px 70px 50px;
   }
+  #generic-article .article-body {
+    text-align: justify;
+  }
+  #generic-article .article-body img, video {
+    max-width: 80%;
+  }
 }
 

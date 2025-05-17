@@ -42,7 +42,7 @@ const GenericArticle: React.FC<ArticleProps> = ({
       </div>
 
       <div className="article-body">
-        <MathJax dynamic>
+        <MathJax dynamic style={{width: "100%"}}>
           {typeof children === "string" ? children : <>{children}</>}
         </MathJax>
       </div>
