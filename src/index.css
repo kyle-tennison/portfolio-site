@@ -37,6 +37,16 @@ body {
   background-color: var(--background);
 }
 
+
+[id]::before {
+  content: "";
+  display: block;
+  height: 100px; /* height of your fixed header */
+  margin-top: -100px;
+  visibility: hidden;
+}
+
+
 .averia-serif-libre-light {
   font-family: "Averia Serif Libre", serif;
   font-weight: 300;
@@ -93,3 +103,4 @@ body {
     background-position: 30px 30px;
   }
 }
+

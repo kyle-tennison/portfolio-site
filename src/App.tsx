@@ -6,6 +6,7 @@ import Articles from "./pages/Articles";
 import Projects from "./pages/Projects";
 import FranklinArticle from "./articles/Franklin/Franklin";
 import ContactArticle from "./articles/Contact/Contact";
+import Navier2DArticle from "./articles/Navier2D/Navier2D";
 import { useEffect } from "react";
 
 import AOS from "aos";
@@ -28,6 +29,7 @@ function App() {
 
           {/* Article Routes */}
           <Route path="/articles/franklin" element={<FranklinArticle />} />
+          <Route path="/articles/navier-2d" element={<Navier2DArticle />} />
           <Route path="/articles/contact" element={<ContactArticle />} />
         </Routes>
       </BrowserRouter>
