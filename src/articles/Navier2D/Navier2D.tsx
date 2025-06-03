@@ -2,6 +2,8 @@ import { Link, Element } from 'react-scroll';
 
 import materialElementPhoto from "./material-element.png"
 import materialElementDxPhoto from "./material-element-dx.png"
+import simAnimation from "./sim-animation.gif"
+
 import GenericArticle from "../../pages/GenericArticle";
 
 export default function Navier2DArticle() {
@@ -639,17 +641,41 @@ export default function Navier2DArticle() {
 
         Rearranging this equation for \(\partial \textbf u / \partial t\) yields:
 
-        {String.raw`\[
-
-        \boxed{\frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\textbf f-(\textbf u \cdot \nabla \textbf u)} \tag{32}
-
-        \]`}
+        <Element name="eq-32">
+            {String.raw`\[
+            \boxed{\frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\textbf f-(\textbf u \cdot \nabla \textbf u)} \tag{32}
+            \]`}
+        </Element>
 
         This is the <strong>Navier-Stokes Equation</strong> for a incompressible 
         fluid. This is the equation that will govern the solution to the CFD simulation. 
 
 
+        <h1>Numerical Approximation</h1>
+
+        Now that we have derived the analytical form of the Navier stokes equation, 
+        all that is left is the discretization of the problem. The following will 
+        show the steps to reach a 2D solution, but a similar approach could be 
+        used in 3D as well. Code is shown in rust, but it could easily be 
+        adapted to any other language. The full example code can be 
+        found <a href="https://github.com/kyle-tennison/navier-2d">here</a> on GitHub.
+
+
+        <img src={simAnimation}/>
+        <span className='centered'>The output animation from the sample code.</span>
+
+
+
+        <br/><br/>
         
+        <h2>Finite-Difference Gradient</h2>
+
+        In the Navier-Stokes equation \(\textbf u\) is a vector field and 
+        \(p\) is a scalar field. If we want to calculate something like 
+        \(\partial p / \partial x\), we need to take the 
+
+
+
 
 
 
