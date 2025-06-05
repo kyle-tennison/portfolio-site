@@ -69,7 +69,9 @@
   box-sizing: border-box;
 }
 
-#generic-article .article-body img, video, .youtube {
+#generic-article .article-body img,
+video,
+.youtube {
   max-width: 50%;
   max-height: 500px;
   aspect-ratio: auto;
@@ -80,7 +82,6 @@
   background-color: white;
 }
 
-
 #generic-article .article-body .youtube {
   width: 480px;
   height: 270px;
@@ -90,7 +91,7 @@
 #generic-article .article-body .il {
   font-size: 14px;
   background-color: var(--background-hint);
-  font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
   padding: 0.2em 0.4em;
   border-radius: 6px;
 }
@@ -110,8 +111,6 @@
   width: fit-content;
 }
 
-
-
 #generic-article .article-body a {
   color: var(--link-color);
   text-decoration: underline;
@@ -130,7 +129,7 @@
 }
 
 #generic-article .article-body .code {
-  font-family:'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-weight: 600;
 }
 
@@ -142,8 +141,8 @@
   #generic-article .article-body {
     text-align: justify;
   }
-  #generic-article .article-body img, video {
+  #generic-article .article-body img,
+  video {
     max-width: 80%;
   }
 }
-

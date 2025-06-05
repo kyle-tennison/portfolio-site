@@ -1,6 +1,5 @@
 import GenericArticle from "../../pages/GenericArticle";
 
-
 export default function ContactArticle() {
   return (
     <>

@@ -37,7 +37,6 @@ body {
   background-color: var(--background);
 }
 
-
 [id]::before {
   content: "";
   display: block;
@@ -45,7 +44,6 @@ body {
   margin-top: -100px;
   visibility: hidden;
 }
-
 
 .averia-serif-libre-light {
   font-family: "Averia Serif Libre", serif;
@@ -103,4 +101,3 @@ body {
     background-position: 30px 30px;
   }
 }
-
