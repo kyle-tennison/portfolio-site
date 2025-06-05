@@ -3,8 +3,14 @@ import { Link, Element } from 'react-scroll';
 import materialElementPhoto from "./material-element.png"
 import materialElementDxPhoto from "./material-element-dx.png"
 import simAnimation from "./sim-animation.gif"
+import carSim from "./car-sim.gif"
+import gridDiagram from "./grid-diagram.png"
+import rippleAirfoil from "./ripple-airfoil.png"
 
 import GenericArticle from "../../pages/GenericArticle";
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { srcery } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+
 
 export default function Navier2DArticle() {
     return (
@@ -298,26 +304,26 @@ export default function Navier2DArticle() {
             {String.raw`\[
             \begin{aligned}
             \begin{bmatrix}
-            \tau _{xx} & \tau _{xy} & \tau _{xz} \
-            \tau _{yx} & \tau _{yy} & \tau _{yz} \
+            \tau _{xx} & \tau _{xy} & \tau _{xz} \\
+            \tau _{yx} & \tau _{yy} & \tau _{yz} \\
             \tau _{zx} & \tau _{zy} & \tau _{zz}
             \end{bmatrix}
             &=
             \begin{bmatrix}
-            \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \
-            \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \
+            \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+            \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
             \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
             \end{bmatrix}
             -
             \begin{bmatrix}
-            \sigma_h & 0 & 0 \
-            0 & \sigma_h & 0 \
+            \sigma_h & 0 & 0 \\
+            0 & \sigma_h & 0 \\
             0 & 0 & \sigma_h
-            \end{bmatrix} \
+            \end{bmatrix} \\
             &=
             \begin{bmatrix}
-            \sigma_{xx} - \sigma_h & \sigma_{xy} & \sigma_{xz} \
-            \sigma_{yx} & \sigma_{yy} - \sigma_h & \sigma_{yz} \
+            \sigma_{xx} - \sigma_h & \sigma_{xy} & \sigma_{xz} \\
+            \sigma_{yx} & \sigma_{yy} - \sigma_h & \sigma_{yz} \\
             \sigma_{zx} & \sigma_{zy} & \sigma_{zz} - \sigma_h
             \end{bmatrix}.
             \end{aligned} \tag{18}
@@ -661,21 +667,289 @@ export default function Navier2DArticle() {
         found <a href="https://github.com/kyle-tennison/navier-2d">here</a> on GitHub.
 
 
-        <img src={simAnimation}/>
+        <img src={carSim}/>
         <span className='centered'>The output animation from the sample code.</span>
 
 
 
         <br/><br/>
         
-        <h2>Finite-Difference Gradient</h2>
+        <h2>Descretization</h2>
 
-        In the Navier-Stokes equation \(\textbf u\) is a vector field and 
-        \(p\) is a scalar field. If we want to calculate something like 
-        \(\partial p / \partial x\), we need to take the 
+        To begin, we first need to define the space that the simulation will take 
+        place. The easiest way to do this is by using a <strong>uniform grid</strong>. 
+        Shown below is the basic idea of a descretized 2D grid:
+
+        <Element name="grid-diagram"><img src={gridDiagram}/></Element>
+        <span className='centered'>3x3 uniform-grid descretization</span>
+
+        In a computer, this grid will be represented by a matrix. For this reason, 
+        we define the \((0,0)\) point at the top left-corner (i.e. row=0, col=0).
+        I also denoted the two axes notations, those being the \(x, y\) axes 
+        and the \(i, j\) axes. The primary difference here is the ordering:
+        in matrices, we index first rows, then cols \((i, j)\); whereas in cartesian space, we 
+        tend to index the x-axis first, then the y-axis \((x, y)\). It's a subtle 
+        difference, but mixing the two up can lead to a lot of confusion.
+
+        <h2>Gradients</h2>
+        The <strong>Gradient</strong> of a function is simply a 
+        vector:
+
+        {String.raw`
+        \[
+        \nabla f(\mathbf{x}) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right]^T \tag{33}
+        \]
+        `}
+
+        Each term {String.raw`\( {\partial f} / {\partial x_n} \)`} needs to be 
+        calculated at each point of the descretized grid. For this reason, each 
+        of these terms are also matrices, which I'll henceforth refer to 
+        as <strong>Scalar Fields</strong>—i.e. a 2D field with a scalar value at 
+        each point. Because the above equation gives a <em>vector</em> of <em>scalar fields</em>, we end 
+        up with a <strong>Vector Field</strong>—i.e. a 2D field with a vector value at each point. 
+
+        <br/><br/>
+
+        To compute the gradient of a 2D function (which is also just a Scalar Field), 
+        we can compute the gradient in each direction separately, then stack 
+        the two together afterwards. There are a few methods in which we can do this; 
+        the two of particular interest in this article are: Finite Differences and 
+        Upwind Schemes. 
+
+        <br/><br/>
+
+        The <strong>Finite Difference Method</strong> (FDM) method is the most popular way 
+        to numerically aproximate a derivative. Analytically, derivatives are 
+        defined as:
+
+        {String.raw`\[
+        f'(x) = \lim_{h \to 0} \frac{f(x + h) - f(x)}{h} \tag{34}
+        \]`}
+
+        As \(h \to 0\), the value of \(f'(x)\) approaches its true analytical value. 
+        If we let \(h\) remain as some finite, near but nonzero quantity, we can approximate 
+        the derivative using the <em>forward finite difference</em>, which is 
+        similarly:
+
+        <Element name="eq-35">
+            {String.raw`\[
+            f'(x) \approx \frac{f(x + h) - f(x)}{h} \tag{35}
+            \]`}
+        </Element>
+
+        If we don't know \(f(x+h)\), we can also use an <em>backwards finite difference</em>, which is:
+        <Element name="eq-36">
+            {String.raw`\[
+            f'(x) \approx \frac{f(x) - f(x - h)}{h} \tag{36}
+            \]`}
+        </Element>
 
 
+        If we know both \(f(x+h)\) and \(f(x-h)\), we can improve our approximation 
+        by taking the average of both. This is called the <em>central finite difference</em>.
+        <Element name="eq-37">
+            {String.raw`\[
+            f'(x) \approx \frac{f(x + h) - f(x - h)}{2h} \tag{37}
+            \]`}
+        </Element>
+        
+        The function below uses the <em>central finite difference</em> for each node (i.e. a point on the grid) 
+        where both \(f(x+h)\) and \(f(x-h)\) are known, but falls back to either 
+        the <em>forwards</em> or <em>backwards finite difference</em> methods
+        for nodes that lay on the edge of the grid, where only \(f(x+h)\) <em>or</em> \(f(x-h)\) is known.
 
+        <br/><br/>
+
+
+        {/* TODO: This overflows on mobile; so do equations */}
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+            {String.raw`
+
+/// Compute the finite-difference gradient of a scalar field **in the x axis**.
+/// Uses a central finite difference for interior nodes and a first-order
+/// forward/backward (depends on side) finite difference for edge nodes.
+///
+/// Parameters:
+/// - 'field' - A reference to the scalar field to take the gradient of
+/// - 'dx' - The size of the elements in the x-axis
+///
+/// Returns:
+/// - A 'ScalarField' with the finite difference of each element
+pub fn gradient_x(field: &ScalarField, dx: f32) -> ScalarField {
+    
+    // Read number of rows & cols from input field
+    let (rows, cols) = field.shape(); 
+
+    // Create a new scalar field for the ouput gradient
+    let mut df_dx: DMatrix<f32> = DMatrix::zeros(rows, cols);
+
+    // Set the interior nodes using the method of central finite differences
+    for r in 0..rows {
+        for c in 1..(cols - 1) {
+            let dfi_dx = (field.index((r, c + 1)) - field.index((r, c - 1))) / (2.0 * dx);
+            *(df_dx.index_mut((r, c))) = dfi_dx
+        }
+    }
+
+    // Fallback to forwards/backwards finite difference (1st order) for edges
+    for r in 0..rows {
+        let dfi_dx_left = (field.index((r, 1)) - field.index((r, 0))) / dx;
+        let dfi_dx_right = (field.index((r, cols - 1)) - field.index((r, cols - 2))) / dx;
+
+        *(df_dx.index_mut((r, 0))) = dfi_dx_left;
+        *(df_dx.index_mut((r, cols - 1))) = dfi_dx_right;
+    }
+
+    df_dx
+}
+
+                `.trim()}
+            </SyntaxHighlighter>
+
+            <br/>
+            <span className='centered'>Rust implementation for a finite-difference gradient (x-axis only).</span>
+
+        <br/>
+
+        Then, the same can be accomplished in the y-axis: <br/><br/>
+
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+                {String.raw`
+
+pub fn gradient_y(field: &ScalarField, dy: f32) -> ScalarField {
+    
+    let (rows, cols) = field.shape();
+    let mut df_dy: DMatrix<f32> = DMatrix::zeros(rows, cols);
+
+    for r in 1..(rows - 1) {
+        for c in 0..cols {
+            let dui_dy = (field.index((r + 1, c)) - field.index((r - 1, c))) / (2.0 * dy);
+            *(df_dy.index_mut((r, c))) = dui_dy
+        }
+    }
+
+    for c in 0..cols {
+        let dui_dy_left = (field.index((1, c)) - field.index((0, c))) / dy;
+        let dui_dy_right = (field.index((rows - 1, c)) - field.index((rows - 2, c))) / dy;
+
+        *(df_dy.index_mut((0, c))) = dui_dy_left;
+        *(df_dy.index_mut((rows - 1, c))) = dui_dy_right;
+    }
+
+    df_dy
+}
+
+
+            `.trim()}
+        </SyntaxHighlighter>
+
+        <br/>
+        <span className='centered'>Rust implementation for a finite-difference gradient (y-axis only).</span>
+
+
+        <br/>
+        A few things to note: 
+
+        <ol>
+            <li>The x-axis boundary are the first and last <em>columns</em>, whereas the y-axis boundary are the first and last <em>rows</em>.</li>
+            <li>In this context, the notation <code className='il'>dui_dx</code> and <code className='il'>dui_dy</code> are used; the \(i\) refers to the {String.raw`\(i^{th}\)`} element, not the \(i\) axis <Link to="grid-diagram" smooth={true} offset={-100}>shown above</Link>.</li>
+        </ol>
+
+        However, the central finite difference is not perfect. When there is a sharp 
+        peak, like the one in the image below, it's easy for the central finite difference 
+        to vastly under/over estimate the derivative at certain points. Often, 
+        the peak itself will be estimated to have a small derivative, while the immediate surrouding 
+        area will have a vastly over estimated derivative. If let to propigate, 
+        derivatives quickly approach \(\infty\) and the simulation explodes.
+
+
+        <img src={"https://upload.wikimedia.org/wikipedia/commons/6/6f/GaussianUpwind2D.gif"} />
+
+        The Navier-Stokes equation's <strong>convective/advective</strong> term 
+        ends up with a sharp peak like this, and we can see how this can cause 
+        the simulation to diverge.
+
+        {String.raw`\[
+            \frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\textbf f- \underbrace{(\textbf u \cdot \nabla \textbf u)}_{\text{advection}}
+        \]`}
+
+        As mentioned, the peak is underestimated and the immediate surroundings are over estimated. Because 
+        the convective term is part of the time step {String.raw`\(\frac{\partial \textbf u}{\partial t}\)`}, the  
+        error in it is effectively added to the next velocity frame. An artifact of this is "splitting" of the peak,
+        where the origional peak is split into two peaks due to the inaccuracy in the central finite difference. 
+        Then, these split peaks propagate with each time step, creating a ripple effect of high and low 
+        velocities very close to each other; this phenomenon is shown in the image below:
+        
+        <img src={rippleAirfoil}/>
+        <span className='centered'>Image of FDM ripple (blue is low velocity; white is high).</span>
+
+
+        To address this issue, we use a <strong>upwind scheme</strong> to calculate the gradient. 
+        This method switches between forwards (<Link to="eq-35" smooth={true} offset={-100}>Eq. 35</Link>) and backwards (<Link to="eq-36" smooth={true} offset={-100}>Eq. 36</Link>) finite differences
+        depending on the "flow direction". I reccomend reading the <a href="https://en.wikipedia.org/wiki/Upwind_scheme">Wikipedia article</a> for more information.
+        At the surface level, this is really just:
+
+        {String.raw`\[
+        f'(x) \approx 
+        \begin{cases}
+        \displaystyle \frac{f(x) - f(x - h)}{h} & \text{if } \alpha > 0 \\
+        \displaystyle \frac{f(x + h) - f(x)}{h} & \text{if } \alpha < 0
+        \end{cases} \tag{38}
+        \]`}
+
+        where \(\alpha\) is the value that we reference for flow direction. In code, we 
+        implement this in a similar fassion as the <code className='il'>gradient_x</code> and <code className='il'>gradient_y</code> functions. 
+
+        <br/><br/>
+
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+        {String.raw`
+
+/// Compute the gradient of a scalar field **in the x axis**. Interior
+/// nodes are computed using an upwind scheme, while edge nodes use
+/// finite differences.
+///
+/// Parameters:
+/// - 'field' - A reference to the scalar field to take the gradient of
+/// - 'sign_field' - The field to reference for upwind/downwind direction
+/// - 'dx' - The size of the elements in the x-axis
+///
+/// Returns:
+/// - A 'ScalarField' with the x-gradient of each element
+fn gradient_x_upwind(field: &ScalarField, sign_field: &ScalarField, dx: f32) -> ScalarField {
+    
+    let (rows, cols) = field.shape();
+    let mut df_dx: DMatrix<f32> = DMatrix::zeros(rows, cols);
+
+    // Set interior nodes using upwind scheme
+    let mut dui_dx: f32;
+    for r in 0..rows {
+        for c in 1..(cols - 1) {
+            if *sign_field.index((r, c)) > 0. { // look at sign field to choose upwind/downwind
+                dui_dx = (field.index((r, c)) - field.index((r, c - 1))) / dx;
+            } else {
+                dui_dx = (field.index((r, c + 1)) - field.index((r, c))) / dx;
+            }
+
+            *(df_dx.index_mut((r, c))) = dui_dx
+        }
+    }
+
+    // Use finite difference on edges (no alternative available)
+    for r in 0..rows {
+        let dfi_dx_left = (field.index((r, 1)) - field.index((r, 0))) / dx;
+        let dfi_dx_right = (field.index((r, cols - 1)) - field.index((r, cols - 2))) / dx;
+
+        *(df_dx.index_mut((r, 0))) = dfi_dx_left;
+        *(df_dx.index_mut((r, cols - 1))) = dfi_dx_right;
+    }
+
+    df_dx
+}
+
+
+        `.trim()}
+        </SyntaxHighlighter>
 
 
 
