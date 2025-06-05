@@ -680,6 +680,8 @@ export default function Navier2DArticle() {
         place. The easiest way to do this is by using a <strong>uniform grid</strong>. 
         Shown below is the basic idea of a descretized 2D grid:
 
+        {/* TODO: Bad diagram, y axis wrong direction */}
+
         <Element name="grid-diagram"><img src={gridDiagram}/></Element>
         <span className='centered'>3x3 uniform-grid descretization</span>
 
@@ -952,8 +954,591 @@ fn gradient_x_upwind(field: &ScalarField, sign_field: &ScalarField, dx: f32) -> 
         </SyntaxHighlighter>
 
 
+        <br/>
+        <span className='centered'>Rust implementation for an upwind gradient scheme (x-axis only).</span>
+
+        <br/> The same can be done in 2D. I'll omit the code here, but the implementation is available on <a href="https://github.com/kyle-tennison/navier-2d/blob/711b322fea42f4093d758cc2ac36177e14fce52a/src/sim/numeric.rs#L130">GitHub</a>.
+
+        <br/>
+
+        <h2>Constructing terms</h2>
+
+        To recap, we now have the following functions:
+        <ul>
+            <li><code className='il'>gradient_x</code></li>
+            <li><code className='il'>gradient_y</code></li>
+            <li><code className='il'>gradient_x_upwind</code></li>
+            <li><code className='il'>gradient_y_upwind</code></li>
+        </ul>
+
+        All of these take in a <code className='il'>ScalarField</code> and 
+        return type <code className='il'>ScalarField</code>. Using these 
+        functions, we can make numerical representations of all of the Navier-Stokes 
+        terms.
+
+        {String.raw`\[
+        \frac{\partial \textbf u}{\partial t} = 
+        \underbrace{- \frac{1}{\rho} \nabla p}_{\text{pressure}} + 
+        \underbrace{\frac{\mu}{\rho} \nabla^2 \textbf u}_{\text{viscous}} + 
+        \underbrace{\frac{1}{\rho} \textbf f}_{\text{external}} - 
+        \underbrace{(\textbf u \cdot \nabla \textbf u)}_{\text{advective}}
+        \]`}
+
+        To simplify things in this simulation, we'll let {String.raw`\(\frac{1}{\rho} \textbf f = 0 \)`} and 
+        only worry about the other terms. Because \(\textbf f \) is an <em>external</em> field, 
+        it would be given anyways and not require any solving. 
+
+        {/* f and a are interchangeable still */}
+
+        <Element name="advective-term">
+            <h3>Advective Term</h3>
+        </Element>
+
+        The advective term \((\textbf u \cdot \nabla \textbf u)\) can also be 
+        written as \((\textbf u \cdot \nabla)\textbf u\). Note 
+        that \((\textbf u \cdot \nabla)\) is a <em>directional-derivative operator</em> and 
+        is not the same as \((\nabla \cdot \textbf u)\). 
+
+        Mathematically (in 2D):
+
+        {String.raw`\[(\textbf u \cdot \nabla)\textbf F = u \frac{\partial \textbf F}{\partial x}+v \frac{\partial \textbf F}{\partial y}=\begin{bmatrix}
+        u (\partial F_x/\partial x)+v(\partial F_x/\partial y)\\
+        u (\partial F_y/\partial x)+ v(\partial F_y/\partial y)
+        \end{bmatrix} \tag{39}
+        \]`}
+
+        So, to replicate this in code, it's as easy as:
+        <ol>
+            <li>Splitting the vector field into its x & y components</li>
+            <li>Taking the partial derivatives of each component</li>
+            <li>Assembling everything into a <code className='il'>VectorField</code></li>
+        </ol>
+
+        The following shows how this can be done with the aforementioned upwind 
+        gradient schemes:
+
+<SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+        {String.raw`
+
+
+pub fn advection_upwind(
+    field: &VectorField,
+    mask: &DMatrix<bool>,
+    dy: f32,
+    dx: f32,
+) -> VectorField {
+
+    // Split the field into it's x and y components (u and v)
+    // Note: This u is not the same as the u used for velocity
+    let (u, v) = (&field[0], &field[1]);
+
+    // Use the aforementioned gradeint functions to compute derivatives
+    let mut du_dx = gradient_x_upwind(u, u, dx);
+    let mut du_dy = gradient_y_upwind(u, v, dy);
+
+    let mut dv_dx = gradient_x_upwind(v, u, dx);
+    let mut dv_dy = gradient_y_upwind(v, v, dy);
+
+    // Zero out derivatives where the solid object is (more info below)
+    zero_where_mask(&mut du_dx, mask);
+    zero_where_mask(&mut du_dy, mask);
+    zero_where_mask(&mut dv_dx, mask);
+    zero_where_mask(&mut dv_dy, mask);
+
+    // Compute advection in the x & y axes
+    let adv_u = u.component_mul(&du_dx) + v.component_mul(&du_dy);
+    let adv_v = u.component_mul(&dv_dx) + v.component_mul(&dv_dy);
+
+    // Stack ScalarFields to get a VectorField
+    [adv_u, adv_v]
+}
+
+        `.trim()}
+        </SyntaxHighlighter>
+        <br/>
+        <span className='centered'>Numeric approximation for Advection; \( (\textbf u \cdot \nabla)\textbf F \)</span>
+
+        A few notes here:
+
+        <ol>
+            <li>The <code className='il'>mask</code> refers to a boolean field that gives <code className='il'>true</code> at all points where the solid object is.</li>
+            <li>We zero-out all the derivatives within the solid mask to avoid nonphysical behavior. The <code className='il'>zero_where_mask</code> can be viewed <a href="https://github.com/kyle-tennison/navier-2d/blob/711b322fea42f4093d758cc2ac36177e14fce52a/src/sim/numeric.rs#L219">here on GitHub</a>.</li>
+            <li>The <code className='il'>VectorField</code> type is simply a two-element array of two <code className='il'>ScalarField</code> elements. The {String.raw`\(0^{th}\)`} element is the x-axis and the {String.raw`\(1^{st}\)`} element is the y-axis.</li>
+        </ol>
+
+
+    <Element name="viscous-term">
+        <h3>Viscous Term</h3>
+    </Element>
+
+    The viscous term {String.raw`\( \frac{\mu}{\rho} \nabla^2 \textbf u \)`} is simply a scalar 
+    times the <em>laplacian</em> of the velocity field.
+
+    The <strong>Laplace Operator</strong><sup>[3]</sup> \( \nabla^2 \) (sometimes just \( \Delta \)) really just means:
+
+    {String.raw`\[ 
+        \nabla^2 f = \sum_{i=1}^n \frac{\partial^2 f}{\partial x_i^2}  \tag{40}
+    \]`}
+
+    for each Cartesian coordinate \( x_i \). 
+
+    In 2D, this is:
+
+    <Element name="eq-41">
+        {String.raw`\[
+            \nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2}  \tag{41}
+        \]`}
+    </Element>
+
+    Using this operator is said to be <em>"taking the Laplacian."</em>
+
+    The <strong>Vector Laplacian</strong>, i.e. the Laplacian for a vector field, is:
+
+    {String.raw`\[ 
+        \nabla^2 \textbf{A} = \nabla(\nabla \cdot \textbf{A}) - \nabla \times (\nabla \times \textbf{A}) \tag{42}
+    \]`}
+
+    However, for \(\mathbb R^2\) Cartesian coordinates, this is simply: 
+
+    {String.raw`\[ 
+        \nabla^2 \textbf{A} = (\nabla^2 A_x, \nabla^2 A_y) \tag{43}
+     \]`}
+
+    <em>You can read more about the Laplace Operator <a href="https://en.wikipedia.org/wiki/Laplace_operator">here</a>.</em>
+
+
+    <br/>
+    <br/>
+
+    Notice that the <em>vector Laplacian</em> (in Cartesian coordinates) is simply 
+    the <em>scalar Laplacian</em> of each of it's components. In code, we can 
+    easily define a <code className='il'>laplacian</code> function for <code className='il'>ScalarField</code>s,
+    then make a <code className='il'>laplacian_vf</code> function for <code className='il'>VectorField</code>s that calls <code className='il'>laplacian</code> and 
+    simply stacks the result.
+
+    <br/>
+    <br/>
+    It is fairly straightforward to implement this. For <code className='il'>ScalarField</code>s, the function is:
+    <br/>
+    <br/>
+      
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+        {String.raw`
+
+pub fn laplacian(field: &ScalarField, dy: f32, dx: f32) -> ScalarField {
+    // First-order derivatives
+    let df_dx = gradient_x(field, dx);
+    let df_dy = gradient_y(field, dy);
+
+    // Second-order derivatives
+    let d2f_dx2 = gradient_x(&df_dx, dx);
+    let d2f_dy2 = gradient_y(&df_dy, dy);
+
+    d2f_dx2 + d2f_dy2
+}
+
+        `.trim()}
+        </SyntaxHighlighter>
+
+        <br/>
+        <span className='centered'>Numeric Laplacian impelemntation in Rust</span>
+
+        <br/>
+
+        Then, for <code className='il'>VectorField</code>s, it is simply:
+
+        <br/>
+        <br/>
+
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+        {String.raw`
+
+pub fn laplacian_vf(field: &VectorField, dy: f32, dx: f32) -> VectorField {
+    let (u, v) = (&field[0], &field[1]);
+
+    [laplacian(u, dy, dx), laplacian(v, dy, dx)]
+}
+
+        `.trim()}
+        </SyntaxHighlighter>
+        <br/>
+        <span className='centered'>Numeric Vector Laplacian impelemntation in Rust</span>
+
+        <Element name="pressure-gradient">
+            <h2>Pressure Gradient</h2>
+        </Element>
+
+
+        The pressure term {String.raw`\( - \frac{1}{\rho} \nabla p \)`} is the most 
+        difficult part of the equation to calculate.
+
+        To solve for this this, we project an <em>intermediate</em> velocity \(\textbf u^*\) that would be the <em>velocity with neglected pressure.</em> You can find this by discretizing the Navier Stokes Equation without the \(- \nabla p\) term:
+
+        {String.raw`\[
+            \rho \frac{\textbf u^*-\textbf u_i}{\Delta t}=\mu \nabla^2\textbf u_i+\textbf f_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)
+        \]`}
+
+        Rearranged for \(\textbf u^*\), this is:
+
+        <Element name="eq-44">
+            {String.raw`\[
+                \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\textbf f_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right) \tag{44}
+            \]`}
+        </Element>
+
+        At this point, the divergence \(\nabla \cdot \textbf u^* \ne 0\) (usually). Then, we <em>correct</em> \( \textbf u^* \) by some pressure to get the corrected {String.raw`\( \textbf u_{i+1} \)`}:
+
+        <Element name="eq-45">
+            {String.raw`\[
+                \textbf u_{i+1}=\textbf u^*+\frac{\Delta t}{\rho}\left(-\nabla p_{i+1}\right) \tag{45}
+            \]`}
+        </Element>
+
+        What we are doing here is adding back the previously omitted pressure term (that we currently don't know). 
+        Now, we can enforce the condition that {String.raw`\(\nabla \cdot \textbf u_{i+1}=0\)`}. We get this by taking 
+        the divergence of both sides of the equation above:
 
         
+    {String.raw`\[    \begin{aligned}
+        0=\nabla \cdot \textbf u_{i+1}&=\nabla\cdot \left[ \textbf u^*+\frac{\Delta t}{\rho}(-\nabla p_{i+1})\right]\\
+
+        &=\nabla\cdot \textbf u^* - \frac{\Delta t}{\rho}\nabla^2p_{i+1}\\
+        \end{aligned}
+    \]`}
+
+    <Element name="eq-46">
+        {String.raw`\[
+            \boxed{\nabla^2p_{i+1}=\frac{\rho}{\Delta t}\nabla \cdot \textbf u^*} \tag{46}
+        \]`}
+    </Element>
+        
+
+        
+        We will need to numericaly approximate this equation to solve for the pressure \(p\). Fortunately, 
+        this equation is a <em>poission equation</em>, meaning it is, generically, in the form of:
+
+        {String.raw`\[
+        \nabla ^2 p = b
+        \]`}
+
+        From <Link to="eq-41" smooth={true} offset={-100}>Eq. 41</Link>, we know that the left-hand side 
+        of this equation can be broken into two second-order partial derivatives. To express this numerically, 
+        we can use a <em>second-order finite difference</em>, which is:
+
+        {String.raw`\[
+            f''(x) \approx \frac{f(x + h) - 2f(x) + f(x - h)}{h^2} \tag{47}
+        \]`}
+
+        So, for our 2D scalar field \(p\), this becomes:
+
+        {String.raw`\[
+            \nabla^2 p \approx \frac{p_{i+1,j} - 2p_{i,j} + p_{i-1,j}}{\Delta x^2} + \frac{p_{i,j+1} - 2p_{i,j} + p_{i,j-1}}{\Delta y^2} \tag{48}
+        \]`}
+
+        Plugging this into <Link to="eq-46" smooth={true} offset={-100} >Eq. 46</Link> gives us a system of 
+        equations that we can solve with a matrix.
+    
+    <Element  name="eq-49">
+            {String.raw`\[
+                \frac{p_{i+1,j} - 2p_{i,j} + p_{i-1,j}}{\Delta x^2} + \frac{p_{i,j+1} - 2p_{i,j} + p_{i,j-1}}{\Delta y^2} = \frac{\rho}{\Delta t}\nabla \cdot \textbf u^* \tag{49}
+            \]`}
+    </Element>
+
+        If we make \(\Delta x = \Delta y = h\), we can rearrange this into the simpler form of:
+
+        <Element name='eq-50'>
+            {String.raw`\[
+                - \left( p_{i-1,j} + p_{i+1,j} + p_{i,j-1} + p_{i,j+1} \right) + 4p_{i,j} = \left(\frac{\rho}{\Delta t}\nabla \cdot \textbf u^* \right) \, h^2 \tag{50}
+            \]`}
+        </Element>
+        where \(h=\Delta x=\Delta y\). 
+
+        <h3>Boundary Conditions</h3>
+
+        However, before we can solve this equation, we need to enforce some boundary 
+        conditions such that we reach a unique solution. There are two kinds of 
+        boundary conditions:
+
+        <ol>
+            <li>
+                A <strong>Dirichlet Boundary Condition</strong> <em>fixes the solution</em> of a differential equation at the boundaries. These are called boundary conditions of the <em>first type</em>. For instance, in the ODE:
+        {String.raw`\[y''+y=0\]`}  
+        The boundaries would be:  
+        {String.raw`\[y(a)=\alpha \quad \text{and}\quad y(b)=\beta\]`}  
+            </li>
+            <li>
+            A <strong>Neumann Boundary Condition</strong> specifies the <em>derivative</em> of a differential equation at the boundary. For instance, in the ODE:
+            {String.raw`\[y''+y=0\]`}  
+            The boundaries would be:  
+            {String.raw`\[y'(a)=\alpha \quad \text{and}\quad y'(b)=\beta\]`}  
+            </li>
+        </ol>
+
+        
+        For this simulation, we'll assert the boundary conditions that:
+
+        <ol>
+            <li>
+                There is <strong>no slip</strong> on the walls, meaning that the 
+                fluid touching the wall moves at the same rate as the rest of the 
+                fluid. Mathematically, this is \(\partial \textbf u / \partial \eta\ = 0\) (where \(\eta\) represents any spacial axis).
+                Because we are constraining the derivative, this is a <strong>Neumann</strong> boundary 
+                condition.For a more realistic scenario (e.g., microflows or rarefied gases), you can allow partial 
+                slip by setting a nonzero slip length or surface velocity, rather than enforcing a strict no-slip condition.
+            </li>
+            <li>
+                The fluid pressure within the solid object is zero. This is 
+                setting a fixed value to the pressure function, making this
+                a <strong>Dirichlet</strong> condition.
+            </li>
+        </ol>
+
+        <h3>Implementation</h3>
+
+        In code, we'll iterate over each \((i,j)\) point and assemble a system of 
+        equations in the form of:
+
+        {String.raw`\[
+        \textbf A p =  b
+        \]`}
+
+        where \(\textbf A p\) is \(\nabla ^2 p\) or the left-hand side of <Link to="eq-50" smooth={true} offset={-100}>Eq. 50</Link>. In order 
+        to do this, <em>we need to flatten our fields</em> from \(\mathbb R^2 \to \mathbb R\). This means each each ordered 
+        pair \((i, j)\) will now be represented by an index \(k\). Things quickly get complicated when trying to constantly 
+        swap between these two coordinate systems, so to midigate this issue, we define a small 
+        function (shown as <code className='il'>ij_to_k</code> in the function below) to convert \((i, j) \to k\).
+        Mathematically, this is simply:
+
+        <Element name="eq-51">
+            {String.raw`\[
+                k = i + jN \tag{51}
+            \]`}
+        </Element>
+
+        where \(N\) is the number of rows.
+
+        <br/>
+
+        Now, we are ready to proceed with the following steps:
+
+        <ol>
+            <li>Implement a way to map between coordinate systems, like shown in <Link to="eq-51" smooth={true} offset={-100}>Eq. 51</Link>.</li>
+            <li>Flatten the <code className='il'>field</code> (i.e. \( b\); the right-hand side of <Link to="eq-50" smooth={true} offset={-100}>Eq. 50</Link>) from a 2D <code className='il'>ScalarField</code> into a column vector.</li>
+            <li>Iterate over each \((i, j)\) point in the field and... 
+
+                <ol type="a">
+                    <li>If the current point is within the solid object (aka the <code className='il'>mask</code>), set the Dirichlet condition that {String.raw`\(p_{ij}=0\)`}</li>
+                    <li>For all other points, populate the matrix \(\textbf A\) such that \(\textbf A p\) resembles the left-hand side of <Link to="eq-50" smooth={true} offset={-100}>Eq. 50</Link>.</li>
+                </ol>
+
+            </li>
+        </ol>
+
+        <br/>
+        <br/>
+
+
+
+        
+
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true}>
+        {String.raw`
+
+pub fn poission_solve(field: &ScalarField, mask: &DMatrix<bool>, step_size: f32) -> ScalarField {
+    // 1. Create a mapping between the two coordinate systems
+    let (rows, cols) = field.shape();
+    let ij_to_k = { |(i, j): (i32, i32)| (i + j * (rows as i32)) as usize };
+
+    // Construct a matrix to hold the A matrix (I'm using sparse memory allocation here)
+    let mut a_coo: CooMatrix<f32> = CooMatrix::new(rows * cols, rows * cols);
+
+    // 2. flattern RHS into a vector
+    let mut field_flat: DVector<f32> = DVector::from_row_slice(field.as_slice());
+
+    // 3. iterate over field, load coordinate matrix
+    for i in 0..rows {
+        for j in 0..cols {
+            let k = ij_to_k((i as i32, j as i32));
+
+            // 3a. Dirichlet condition that p=0 inside the mask
+            if *mask.index((i, j)) {
+                a_coo.push(k, k, 1.);
+                *(field_flat.index_mut(k)) = 0.;
+                continue;
+            }
+
+            // 3b. Apply all other points. Use this stencil to get other values
+            for (di, dj) in [(-1, 0), (1, 0), (0, -1), (0, 1)] {
+
+                let (ni, nj) = ((i as i32) + di, (j as i32) + dj);
+            
+                // Populate A matrix with the neighboring point *if* it's not 
+                // a boundry point
+                if (0 <= ni && ni < rows as i32)
+                    && (0 <= nj && nj < cols as i32)
+                    && !(*mask.index((ni as usize, nj as usize)))
+                {
+                    let nk = ij_to_k((ni, nj));
+                    a_coo.push(k, nk, -1.);
+                } 
+
+                // If the neighboring point is on a boundry, exclude it from 
+                // the A here to enforce Neumann condition that dp/dn = 0 on
+                // the boundry.
+            }
+
+            // Add center coefficient at the end to finish 3b
+            a_coo.push(k, k, 4 as f32);
+            *(field_flat.index_mut(k)) = -field.index((i, j)) * (step_size.powi(2));
+        }
+    }
+
+// -- snip --
+
+        `.trim()}
+        </SyntaxHighlighter>
+
+        <br/><br/>
+
+        This gives us a matrix that represents \(\textbf A\) above using. From here, we need to:
+
+        <ol>
+            <li>Pin the pressure to zero at some point to ensure there's a unique solution.</li>
+            <li>Solve the system.</li>
+        </ol>
+
+        The first part, pinning the pressure, is very simple; we just set an arbitrary point in \(b\) to zero.
+        Solving the matrix, on the other hand, can be done in a variety of ways. In this code, 
+        I am using the <a href="https://docs.rs/argmin/latest/argmin/"><code className='il'>argmin</code></a> numerical 
+        optimization crate to use a <a href="https://en.wikipedia.org/wiki/Conjugate_gradient_method">Conjugate Gradient</a> iterative 
+        approach, but this is only one way to go about things.
+
+        <br/><br/>
+        
+        <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={true} startingLineNumber={49}>
+        {String.raw`
+
+// -- snip --
+
+    *(field_flat.index_mut(0)) = 0.; // pin pressure
+
+    let a_csr = CsrMatrix::from(&a_coo); // convert to csr sparse
+
+    // solve system
+    let b: Vec<f32> = field_flat.iter().copied().collect();
+    let solver: ConjugateGradient<Vec<f32>, f32> = ConjugateGradient::new(b);
+    let initial_guess: Vec<f32> = vec![0.0; field_flat.nrows()];
+    let operator = ConjugateGradientOperator { a: &a_csr };
+
+    let res = match Executor::new(operator, solver)
+        .configure(|state| {
+            state
+                .param(initial_guess)
+                .max_iters(MAX_CG_ITER)
+                .target_cost(TARGET_CG_COST)
+        })
+        .run()
+    {
+        Ok(r) => r,
+        Err(err) => {
+            panic!("Conjugate Gradient error: {err}");
+        }
+    };
+
+    let best_param = res
+        .state()
+        .best_param
+        .as_ref()
+        .expect("Conjugate Gradient failed.")
+        .to_owned();
+
+    DMatrix::from_vec(rows, cols, best_param)
+}
+
+        `.trim()}
+        </SyntaxHighlighter>
+
+        <br/>
+        <br/>
+
+        See the <a href="https://github.com/kyle-tennison/navier-2d/blob/master/src/sim/poission.rs">GitHub</a> for the full 
+        implementation of the Conjugate Gradient solution.
+
+
+    <h2>Timestepping</h2>
+
+    Now, we have a the general method for solution:
+
+    <ol>
+        <li>Calculate the <Link to="advective-term" smooth={true} offset={-100}>Advective</Link> (\( \textbf u_i \cdot \nabla \textbf u_i \)) and <Link to="viscous-term" smooth={true} offset={-100}>Viscous</Link> (\( \nabla ^2 \textbf u\)) terms.</li>
+        <li>
+            Use these values to calculate \(\textbf u^*\) from <Link to="eq-44" smooth={true} offset={-100}>Eq. 44</Link>, 
+
+            {String.raw`\[
+                \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\textbf f_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right)
+            \]`}
+        </li>
+        <li>Use the predicted \(\textbf u^*\) to calculate the <Link to="pressure-gradient" smooth={true} offset={-100}>Pressure Gradient</Link> using <Link to="eq-46" smooth={true} offset={-100}>Eq. 46</Link>, 
+        
+        {String.raw`\[\nabla^2p_{i+1}=\frac{\rho}{\Delta t}\nabla \cdot \textbf u^*\]`}
+        </li>
+
+        <li>
+            Correct the predicted \(\textbf u ^*\) substituting everything into <Link to="eq-45" smooth={true} offset={-100}>Eq. 45</Link>, which yields the next iteration's velocity, 
+            {String.raw`\[
+                \textbf u_{i+1}=\textbf u^*+\frac{\Delta t}{\rho}\left(-\nabla p_{i+1}\right)
+            \]`}
+
+        </li>
+    </ol>
+
+
+    <strong>However,</strong> here is one more thing to consider, which is the Courant-Friedrichs-Lewy (CFL) condition, which governs the maximum timestep \(\Delta t\). 
+    A great video explaining it's use is here (2:08 - 4:40).
+
+    <iframe
+        className="youtube"
+        src="https://www.youtube.com/embed/WBWY46ynRk0?si=Gy0ySTKN5qaz1oko&amp;start=128"
+        title="YouTube video player"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+    />
+
+    In summary, we define the Courant number to be:
+    
+    {String.raw`\[C_0=\frac{u_{\text{max}} \Delta t}{\Delta x}\]`}
+
+    And by limiting \(C_0\) to ~1.0, we can stop the simulation from exploding by 
+    taking time steps that are too big. Rearranging for \(\Delta t\) and expanding 
+    to 2D give:
+
+    {String.raw`\[
+        \Delta t = \frac{\text{CFL}}{\dfrac{u_{\max}}{\Delta x} + \dfrac{v_{\max}}{\Delta y}}
+    \]`}
+
+    In code, this is simply:
+
+    <br/>
+    <br/>
+
+    <SyntaxHighlighter className="codeblock centered" language="rust" style={srcery} customStyle={{padding: "20px"}} showLineNumbers={false}>
+        {String.raw`
+
+let dt = self.cfl / (max_ux / self.dx + max_uy / self.dy);
+
+`.trim()}
+        </SyntaxHighlighter>
+
+
+    <br/>
+    <br/>
+    <strong><em>Finally,</em></strong> substituting this into the four-steps above will yield a simple CFD simulation.
+
+    
+
+
+
+
 
 
 
