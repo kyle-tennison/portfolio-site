@@ -35,6 +35,7 @@ body {
   font-family: "Averia Serif Libre", serif;
   margin: 0;
   background-color: var(--background);
+  min-width: 410px;
 }
 
 [id]::before {
