@@ -117,6 +117,10 @@ video,
   font-size: 12px;
 }
 
+#generic-article .article-body .codeblock code, pre {
+  -webkit-text-size-adjust: 100%;
+}
+
 #generic-article .article-body .codeblock {
   font-size: 12px;
   text-align: left !important;
