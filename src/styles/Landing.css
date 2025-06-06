@@ -337,4 +337,8 @@
   #landing-page .nav-card-container .right {
     margin-left: 0px;
   }
+
+  #landing-page .featued-project-pane #featured-action-btn {
+    padding: 12px 40px;
+  }
 }

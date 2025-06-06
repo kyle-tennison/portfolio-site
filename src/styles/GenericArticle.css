@@ -74,9 +74,9 @@
   box-sizing: border-box;
 }
 
-#generic-article .article-body img,
-video,
-.youtube {
+#generic-article .article-body img, 
+#generic-article .article-body video, 
+#generic-article .article-body .youtube {
   max-width: 50%;
   max-height: 500px;
   aspect-ratio: auto;
