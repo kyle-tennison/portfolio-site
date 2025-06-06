@@ -7,6 +7,10 @@
   overflow: hidden;
   color: var(--primary-font);
   align-items: center;
+  margin-left: calc(-1 * env(safe-area-inset-left));
+  margin-right: calc(-1 * env(safe-area-inset-right));
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
   z-index: 10;
 }
 
@@ -16,13 +20,13 @@
   background-size: cover;
   background-position: top center;
   width: 100%;
-  box-sizing: border-box;
   padding: 150px 50px 70px 100px;
   color: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   background-position: center;
   z-index: 10;
-  overflow: hidden;
+  margin-left: calc(-1 * env(safe-area-inset-left));
+  margin-right: calc(-1 * env(safe-area-inset-right));
 }
 
 #generic-article .title-text .background {
