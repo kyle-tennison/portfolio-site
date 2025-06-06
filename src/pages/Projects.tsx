@@ -2,7 +2,7 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProjectCard from "../components/ProjectCard";
 
-import carSimGif from "../articles/Navier2D/car-sim.gif"
+import carSimGif from "../articles/Navier2D/car-sim.gif";
 
 import "../styles/Projects.css";
 
