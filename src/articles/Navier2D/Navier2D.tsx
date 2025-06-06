@@ -21,7 +21,7 @@ export default function Navier2DArticle() {
       titleImage="https://kyletennison.b-cdn.net/wind-tunnel-background.webp"
     >
       <h1>Overview</h1>
-      &emsp;&emsp;The <strong>Navier-Stokes equations</strong> are a set of
+      The <strong>Navier-Stokes equations</strong> are a set of
       nonlinear partial differential equations that govern the motion of viscous
       fluids. In their compressible form, they are written as:
 
@@ -34,7 +34,7 @@ export default function Navier2DArticle() {
             \]
           `}
       </div>
-      &emsp;&emsp;Numerical solution of these equations enables the simulation
+      Numerical solution of these equations enables the simulation
       of fluid behavior in complex domains—a field known as{" "}
       <strong>Computational Fluid Dynamics</strong> (CFD). While the
       mathematical form may appear excessively complicated, the underlying
@@ -48,14 +48,14 @@ export default function Navier2DArticle() {
       . Feel free to use the code in this repo to help kickstart your own
       elementary CFD project.
       <h3>Preface</h3>
-      &emsp;&emsp;CFD is an expansive and highly interdisciplinary domain. This
+      CFD is an expansive and highly interdisciplinary domain. This
       article is intended as an accessible introduction for those who are just
       beginning their journey in the field. I should also note: as of writing
       this, I am currently an undergraduate student and by no means an expert in
       the field. However, I still see merit in this article for those who, like
       me, were anxious for any free, elementary information on CFD.
       <h3>Prerequisites</h3>
-      &emsp;&emsp;The reader is assumed to have a working knowledge of vector
+      The reader is assumed to have a working knowledge of vector
       calculus and linear algebra. Dot notation is occasionally used for time
       derivatives. Some familiarity with fundamental classical mechanics is
       helpful, but not necessary.
@@ -111,7 +111,7 @@ export default function Navier2DArticle() {
 
 <h2>Stress Tensors</h2>
       <h3>Material Elements</h3>
-      &emsp;&emsp;In CFD, it is commonly assumed (for simplicity) that
+      In CFD, it is commonly assumed (for simplicity) that
       macroscopic physical laws—such as those governing material properties and
       forces—remain valid when applied at smaller spatial scales. In reality,
       there exists a point where microscopic phenomena begin to have a
@@ -120,7 +120,7 @@ export default function Navier2DArticle() {
       be greatly simplified.
       <br />
       <br />
-      &emsp;&emsp;In the continuum framework, fluids and solids are modeled as
+      In the continuum framework, fluids and solids are modeled as
       being composed of infinitesimal "material elements" (sometimes called
       "fluid parcels/elements", depending on the context). Suppose these elements are rectangular prisms; in this model, the following
       stresses act on each face:
@@ -137,7 +137,7 @@ export default function Navier2DArticle() {
         </em>
       </span>
       <br />
-      &emsp;&emsp;As shown in the image above, there are nine stresses (\(\sigma
+      As shown in the image above, there are nine stresses (\(\sigma
       = F/A\))—three per face of the element. The subscripts correspond to the
       coordinate axes, typically assigned as \(x = 1\), \(y = 2\), and \(z =
       3\). Notable characteristics include:
@@ -158,7 +158,7 @@ export default function Navier2DArticle() {
       this can be seen in the figure above.
       <br />
       <br />
-      &emsp;&emsp;Managing nine stresses independently can be cumbersome. To
+      Managing nine stresses independently can be cumbersome. To
       address this, the stresses can be assembled into a{" "}
       <strong>Cauchy Stress Tensor</strong>, which is:
       {String.raw`\[\boldsymbol{\sigma} \equiv \begin{bmatrix}
@@ -169,7 +169,7 @@ export default function Navier2DArticle() {
       Now, to find the stress in some direction \(\hat n\), all that is needed is:
       {String.raw`\[\hat n \cdot \boldsymbol \sigma \tag{3}\]`}
       <h3>Directional Forces</h3>
-      &emsp;&emsp;The stresses in a body are often not uniform; because of this, 
+      The stresses in a body are often not uniform; because of this, 
       the opposite faces on a given material element are likely to have some small, nonzero 
       difference in stress. This is better shown with an illustration.
       <Element name="material-element-dx">
@@ -187,7 +187,7 @@ export default function Navier2DArticle() {
         </em>
       </span>
       <br />
-      &emsp;&emsp;The stresses <em>annotated in green</em> demonstrate this nonzero difference.
+      The stresses <em>annotated in green</em> demonstrate this nonzero difference.
       The values{" "}
       <em>at the bottom</em> of the material element have the force of:
       {String.raw`\[-\sigma_{yx}dxdz  \tag{4} \] `}
@@ -206,7 +206,7 @@ export default function Navier2DArticle() {
       is simply an application of the Taylor series.
 
       <br/><br/>
-      &emsp;&emsp;The following is a brief explanation of <Link to="eq-5" smooth={true} offset={-100}>
+      The following is a brief explanation of <Link to="eq-5" smooth={true} offset={-100}>
         Eq. 5
       </Link>. The first two terms of the Taylor series are:
 
@@ -223,7 +223,7 @@ export default function Navier2DArticle() {
       .
 
       <br /><br />
-      &emsp;&emsp;The{" "}
+      The{" "}
       <Link to="material-element-dx" smooth={true} offset={-100}>
         image above
       </Link>{" "}
@@ -244,7 +244,7 @@ export default function Navier2DArticle() {
           \]
           `}
       </div>
-      &emsp;&emsp;The same can be done for the other axes. Altogether, the three axes can be represented in
+      The same can be done for the other axes. Altogether, the three axes can be represented in
       a vector \( \mathbf F_p \) that gives the net force on the element{" "}
       <em>from surface forces</em>:
       <div className="long-horiz">
@@ -297,7 +297,7 @@ export default function Navier2DArticle() {
 
 <h2>Cauchy Momentum Equation</h2>
       <h3>Conservation of Momentum</h3>
-      &emsp;&emsp;Newton's Second Law of motion states:
+      Newton's Second Law of motion states:
       {String.raw`\[\mathbf F = m \boldsymbol{\ddot x}\]`}
       and, the conservation of momentum states:
       {String.raw`\[\boldsymbol p = m \boldsymbol{\dot x}\]`}
@@ -345,7 +345,7 @@ export default function Navier2DArticle() {
       relationship between acceleration, mass, and external forces.
 
       <h3>Conservation Form</h3>
-      &emsp;&emsp;The form of the Cauchy Momentum Equation in{" "}
+      The form of the Cauchy Momentum Equation in{" "}
       <Link to="eq-16" smooth={true} offset={-100}>
         Eq. 16
       </Link>{" "}
@@ -355,7 +355,7 @@ export default function Navier2DArticle() {
       First, it is important to distinguish <em>Deviatoric Stress</em> from{" "}
       <em>Hydrostatic Stress</em>. <br />
       <br />
-      &emsp;&emsp;<strong>Hydrostatic stress</strong> \(\sigma _h\) (also known as
+      <strong>Hydrostatic stress</strong> \(\sigma _h\) (also known as
       isotropic/volumetric stress) is the average <em>normal</em> stress of the
       tensor. Hydrostatic stress is analogous to pressure; it will squeeze the
       element uniformly on all sides, but will not change its shape. Mathematically,
@@ -364,7 +364,7 @@ export default function Navier2DArticle() {
         
         \sigma_h = \frac{ \sigma_{11} + \sigma_{22} + \sigma_{33} }{3} \tag{17}
         \]`}
-      &emsp;&emsp;<strong>Deviatoric Stress</strong> \(\boldsymbol \tau \) takes the form of
+      <strong>Deviatoric Stress</strong> \(\boldsymbol \tau \) takes the form of
       a "stress deviator tensor." These represent the stresses that tend to
       deform the body. The stress tensor \(\boldsymbol \sigma \) can be
       represented as the sum of these two stresses. <em>The actual 
@@ -372,7 +372,7 @@ export default function Navier2DArticle() {
       </em>
 
       <br/><br/>
-      &emsp;&emsp;Now, because there are two partitions, \( \boldsymbol \sigma
+      Now, because there are two partitions, \( \boldsymbol \sigma
       \) can be replaced with:
       {String.raw`
         \[ \boldsymbol \sigma = \boldsymbol \tau + \sigma _h \mathbf I_3 \tag{19} \]
@@ -445,7 +445,7 @@ export default function Navier2DArticle() {
       The points are considered in more detail below. <br />
       <br />
       <h3>1. Isotropy</h3>
-      &emsp;&emsp;An <strong>isotropic</strong> fluid is simply a fluid with properties that
+      An <strong>isotropic</strong> fluid is simply a fluid with properties that
       do not change depending on direction. Non-isotropic (anisotropic)
       properties are easier to conceptualize for solids—such as wood, which is
       stronger depending on its grain direction. Most day-to-day
@@ -453,7 +453,7 @@ export default function Navier2DArticle() {
       <br />
       <br />
       <h3>2. \( \nabla \cdot \boldsymbol \tau = 0 \) at rest</h3>
-      &emsp;&emsp;Asserting that \( \nabla \cdot \boldsymbol \tau = 0 \) means that, in the
+      Asserting that \( \nabla \cdot \boldsymbol \tau = 0 \) means that, in the
       absence of motion or deformation, there are no net internal shear forces
       acting within the fluid. This simply states that the fluid will reach
       static equilibrium if left to rest. This property can be illustrated more clearly with{" "}
@@ -480,7 +480,7 @@ export default function Navier2DArticle() {
       pressure gradient will be zero, meaning pressure will be uniform across
       the fluid at rest.
       <h3>3. Strain Rate Tensor</h3>
-      &emsp;&emsp;The <strong>Strain Tensor</strong> is similar to the stress tensor, but
+      The <strong>Strain Tensor</strong> is similar to the stress tensor, but
       instead of describing the stress in each axis, it describes the strain in
       each axis:
       <div className="long-horiz">
@@ -507,13 +507,13 @@ export default function Navier2DArticle() {
       \partial x \) where \(d\) is the <em>displacement field</em>.
 
       <br/><br/>
-      &emsp;&emsp;<em>
+      <em>
         Note: The displacement field is often shown as \(u\), but \(u\) is
         reserved for velocity in this article.
       </em>
 
       <br/><br/>
-      &emsp;&emsp;In two dimensions, <em>normal</em> strain still takes the form of{" "}
+      In two dimensions, <em>normal</em> strain still takes the form of{" "}
       {String.raw`\( \epsilon _{xx}=  \frac{\partial u_x}{\partial x} \)`},{" "}
       {String.raw`\( \epsilon _{yy}=  \frac{\partial u_y}{\partial y} \)`},
       etc. However, <em>shear</em> strain needs to represent angular distortion
@@ -532,7 +532,7 @@ export default function Navier2DArticle() {
       here.
       <br />
       <br />
-      &emsp;&emsp;Taking the time derivative of both sides of <Link to="eq-22" smooth={true} offset={-100}>Eq. 22</Link> gives:
+      Taking the time derivative of both sides of <Link to="eq-22" smooth={true} offset={-100}>Eq. 22</Link> gives:
       {String.raw`\[
         
         \dot \epsilon _{ij} = \frac12 (\frac{\partial u_i}{\partial x_j}+\frac{\partial u_j}{\partial x_i}) \tag{23}
@@ -549,7 +549,7 @@ export default function Navier2DArticle() {
       For further information, see <a href="https://en.wikipedia.org/wiki/Strain-rate_tensor">here</a>.
       <br />
       <br />
-      &emsp;&emsp;It should also be noted that the{" "}
+      It should also be noted that the{" "}
       <a href="https://en.wikipedia.org/wiki/Trace_(linear_algebra)">
         trace
       </a>{" "}
@@ -559,7 +559,7 @@ export default function Navier2DArticle() {
             \textbf{tr(e)} = \nabla \cdot \textbf u \tag{25}
             \]`}
       </Element>
-      &emsp;&emsp;The Stress Deviator Tensor, first mentioned in{" "}
+      The Stress Deviator Tensor, first mentioned in{" "}
       <Link to="eq-18" smooth={true} offset={-100}>Eq. 18</Link>
       , can (for reasons beyond the scope of this article) be expressed in terms of
       the Strain-Rate Tensor. The relationship is fixed by two physical
@@ -605,7 +605,7 @@ export default function Navier2DArticle() {
       
 
 <h2>Continuity Equation</h2>
-      &emsp;&emsp;Paired with the Navier-Stokes equation is often a{" "}
+      Paired with the Navier-Stokes equation is often a{" "}
       <em>Continuity Equation</em> that enforces the conservation of mass. This equation is briefly derived here. Let mass be defined as:
       {String.raw`\[
         m = \iiint\limits_V\rho(\textbf{x},t)dV
@@ -649,7 +649,7 @@ export default function Navier2DArticle() {
 
 
 <h2>Incompressible Flow</h2>
-      &emsp;&emsp;Up to this point, all derived equations operate solely on the assumptions made
+      Up to this point, all derived equations operate solely on the assumptions made
       for isotropic Newtonian fluids. These equations
       can be reduced significantly by making the assumption that the fluid being studied is{" "}
       <strong>incompressible</strong>. This is a good assumption for water-based
@@ -667,7 +667,7 @@ export default function Navier2DArticle() {
         <li>\(D \rho / Dt = 0 \) (i.e. \(\rho \) is constant.)</li>
       </ol>
       <h3>Reduced Continuity Equation</h3>
-      &emsp;&emsp;Because \(D \rho / Dt = 0 \), it is easy to see how{" "}
+      Because \(D \rho / Dt = 0 \), it is easy to see how{" "}
       <Link to="eq-29" smooth={true} offset={-100}>
         Eq. 29
       </Link>{" "}
@@ -681,7 +681,7 @@ export default function Navier2DArticle() {
       </Element>
       This is the <strong>Continuity Equation for Incompressible Fluids</strong>
       .<h3>Reduced Navier-Stokes Equations</h3>
-      &emsp;&emsp;Because \(\lambda = 0\),{" "}
+      Because \(\lambda = 0\),{" "}
       <Link to="eq-28" smooth={true} offset={-100}>
         Eq. 28
       </Link>{" "}
@@ -723,7 +723,7 @@ export default function Navier2DArticle() {
 
 
 <h1>Numerical Approximation</h1>
-      &emsp;&emsp;Now that the analytical form of the Navier-Stokes
+      Now that the analytical form of the Navier-Stokes
       equation has been derived, all that remains is the discretization of the problem. The
       following demonstrates the steps to reach a 2D solution, but a similar
       approach can be used in 3D as well. Code is provided in Rust, though it can
@@ -741,17 +741,16 @@ export default function Navier2DArticle() {
       
 
 <h2>Discretization</h2>
-      &emsp;&emsp;To begin, it is first necessary to define the space in which the simulation will take
+      To begin, it is first necessary to define the space in which the simulation will take
       place. The easiest way to do this is by using a{" "}
       <strong>uniform grid</strong>. Shown below is the basic idea of a
       discretized 2D grid:
-      {/* TODO: Bad diagram, y axis wrong direction */}
       <Element name="grid-diagram">
         <img src={gridDiagram} />
       </Element>
       <span className="centered">3x3 uniform-grid discretization</span>
       <br/>
-      &emsp;&emsp;In a computer, this grid will be represented by a matrix. For this reason,
+      In a computer, this grid will be represented by a matrix. For this reason,
       the \((0,0)\) point is defined at the top left corner (i.e. row=0, col=0).
       The two axes notations are also denoted: the \(x, y\) axes and
       the \(i, j\) axes. The primary difference here is the ordering: in
@@ -766,7 +765,7 @@ export default function Navier2DArticle() {
       
 
 <h2>Gradients</h2>
-      &emsp;&emsp;The <strong>Gradient</strong> of a function is simply a vector:
+      The <strong>Gradient</strong> of a function is simply a vector:
       {String.raw`
         \[
         \nabla f(\mathbf{x}) = \left[ \frac{\partial f}{\partial x_1}, \frac{\partial f}{\partial x_2}, \dots, \frac{\partial f}{\partial x_n} \right]^T \tag{33}
@@ -781,14 +780,14 @@ export default function Navier2DArticle() {
       —i.e. a 2D field with a vector value at each point.
       <br />
       <br />
-      &emsp;&emsp;To compute the gradient of a 2D function (which is also just a Scalar
+      To compute the gradient of a 2D function (which is also just a Scalar
       Field), we can compute the gradient in each direction separately, then
       stack the two together afterwards. There are a few methods in which we can
       do this; the two of particular interest in this article are: Finite
       Differences and Upwind Schemes.
       <br />
       <br />
-      &emsp;&emsp;The <strong>Finite Difference Method</strong> (FDM) method is the most
+      The <strong>Finite Difference Method</strong> (FDM) method is the most
       popular way to numerically approximate a derivative. Analytically,
       derivatives are defined as:
       {String.raw`\[
@@ -818,14 +817,14 @@ export default function Navier2DArticle() {
             f'(x) \approx \frac{f(x + h) - f(x - h)}{2h} \tag{37}
             \]`}
       </Element>
-      &emsp;&emsp;The function below uses the <em>central finite difference</em> for each
+      The function below uses the <em>central finite difference</em> for each
       node (i.e. a point on the grid) where both \(f(x+h)\) and \(f(x-h)\) are
       known, but falls back to either the <em>forwards</em> or{" "}
       <em>backwards finite difference</em> methods for nodes that lay on the
       edge of the grid, where only \(f(x+h)\) <em>or</em> \(f(x-h)\) is known.
       <br />
       <br />
-      {/* TODO: This overflows on mobile; so do equations */}
+
       <div className="long-horiz">
         <SyntaxHighlighter
           className="codeblock centered"
@@ -936,7 +935,7 @@ export default function Navier2DArticle() {
           .
         </li>
       </ol>
-      &emsp;&emsp;However, the central finite difference is not perfect. When there is a
+      However, the central finite difference is not perfect. When there is a
       sharp peak, like the one in the image below, it is easy for the central
       finite difference to vastly under/over estimate the derivative at certain
       points. Often, the peak itself will be estimated to have a small
@@ -948,7 +947,7 @@ export default function Navier2DArticle() {
           "https://upload.wikimedia.org/wikipedia/commons/6/6f/GaussianUpwind2D.gif"
         }
       />
-      &emsp;&emsp;The Navier-Stokes equation's <strong>convective/advective</strong> term
+      The Navier-Stokes equation's <strong>convective/advective</strong> term
       ends up with a sharp peak like this, and we can see how this can cause the
       simulation to diverge.
       {String.raw`\[
@@ -967,7 +966,7 @@ export default function Navier2DArticle() {
       <span className="centered">
         Image of FDM ripple (blue is low velocity; white is high).
       </span>
-      &emsp;&emsp;To address this issue, we use a <strong>upwind scheme</strong> to
+      To address this issue, we use a <strong>upwind scheme</strong> to
       calculate the gradient. This method switches between forward (
       <Link to="eq-35" smooth={true} offset={-100}>
         Eq. 35
@@ -1094,7 +1093,7 @@ export default function Navier2DArticle() {
       <Element name="advective-term">
         <h3>Advective Term</h3>
       </Element>
-      &emsp;&emsp;The advective term \((\textbf u \cdot \nabla \textbf u)\) can also be
+      The advective term \((\textbf u \cdot \nabla \textbf u)\) can also be
       written as \((\textbf u \cdot \nabla)\textbf u\). Note that \((\textbf u
       \cdot \nabla)\) is a <em>directional-derivative operator</em> and is not
       the same as \((\nabla \cdot \textbf u)\). Mathematically (in 2D):
@@ -1191,7 +1190,7 @@ export default function Navier2DArticle() {
       <Element name="viscous-term">
         <h3>Viscous Term</h3>
       </Element>
-      &emsp;&emsp;The viscous term {String.raw`\( \frac{\mu}{\rho} \nabla^2 \textbf u \)`}{" "}
+      The viscous term {String.raw`\( \frac{\mu}{\rho} \nabla^2 \textbf u \)`}{" "}
       is simply a scalar times the <em>Laplacian</em> of the velocity field. The{" "}
       <strong>Laplace Operator</strong>
       \( \nabla^2 \) (sometimes just \( \Delta \)) really just means:
@@ -1220,7 +1219,7 @@ export default function Navier2DArticle() {
       </em>
       <br />
       <br />
-      &emsp;&emsp;Notice that the <em>vector Laplacian</em> (in Cartesian coordinates) is
+      Notice that the <em>vector Laplacian</em> (in Cartesian coordinates) is
       simply the <em>scalar Laplacian</em> of each of its components. In code,
       we can easily define a <code className="il">Laplacian</code> function for{" "}
       <code className="il">ScalarField</code>s, then make a{" "}
@@ -1290,7 +1289,7 @@ export default function Navier2DArticle() {
       </Element>
         
 <h2>Pressure Gradient</h2>
-      &emsp;&emsp;The pressure term {String.raw`\( - \frac{1}{\rho} \nabla p \)`} is the
+      The pressure term {String.raw`\( - \frac{1}{\rho} \nabla p \)`} is the
       most difficult part of the equation to calculate. To solve for this,
       an <em>intermediate</em> velocity \(\textbf u^*\) is projected—this is
       the <em>velocity with neglected pressure</em>. This can be found by
@@ -1306,7 +1305,7 @@ export default function Navier2DArticle() {
               \]`}
         </Element>
       </div>
-      &emsp;&emsp;At this point, the divergence \(\nabla \cdot \textbf u^* \ne 0\)
+      At this point, the divergence \(\nabla \cdot \textbf u^* \ne 0\)
       (usually). Then, \( \textbf u^* \) is <em>corrected</em> by some pressure to
       obtain the corrected {String.raw`\( \textbf u_{i+1} \)`}:
       <Element name="eq-45">
@@ -1374,7 +1373,7 @@ export default function Navier2DArticle() {
       where \(h=\Delta x=\Delta y\).
       
       <h3>Boundary Conditions</h3>
-      &emsp;&emsp;Before this equation can be solved, boundary conditions must be enforced to reach a unique solution. There are two
+      Before this equation can be solved, boundary conditions must be enforced to reach a unique solution. There are two
       kinds of boundary conditions:
       <ol>
         <li>
@@ -1414,7 +1413,7 @@ export default function Navier2DArticle() {
         </li>
       </ol>
       <h3>Implementation</h3>
-      &emsp;&emsp;In code, each \((i,j)\) point is iterated over to assemble a system of
+      In code, each \((i,j)\) point is iterated over to assemble a system of
       equations in the form:
       {String.raw`\[
         \textbf A p =  b
@@ -1661,7 +1660,7 @@ export default function Navier2DArticle() {
             \]`}
         </li>
       </ol>
-      &emsp;&emsp;<strong>However,</strong> there is one more thing to consider: the
+      <strong>However,</strong> there is one more thing to consider: the
       Courant-Friedrichs-Lewy (CFL) condition, which governs the maximum
       timestep \(\Delta t\). A concise video explaining its use is available here (2:08 -
       4:40).
