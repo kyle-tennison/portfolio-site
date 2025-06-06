@@ -357,11 +357,10 @@ export default function Navier2DArticle() {
       <br />
       <strong>Hydrostatic stress</strong> \(\sigma _h\) (also known as
       isotropic/volumetric stress) is the average <em>normal</em> stress of the
-      tensor. Hydrostatic stress is analogous to pressure; it will squeeze the
+      tensor. Hydrostatic stress is analogous to pressure (\(-\sigma _h = p\)); it will squeeze the
       element uniformly on all sides, but will not change its shape. Mathematically,
       this is represented as:
       {String.raw`\[
-        
         \sigma_h = \frac{ \sigma_{11} + \sigma_{22} + \sigma_{33} }{3} \tag{17}
         \]`}
       <strong>Deviatoric Stress</strong> \(\boldsymbol \tau \) takes the form of
@@ -381,7 +380,7 @@ export default function Navier2DArticle() {
       <Link to="eq-16" smooth={true} offset={-100}>
         Eq. 16
       </Link>{" "}
-      gives:
+      and replacing \(\sigma_h\) for \(-p\) (pressure) yields:
       {String.raw`\[
         \begin{aligned}
         \frac{D\textbf{u}}{Dt} 
@@ -527,7 +526,7 @@ export default function Navier2DArticle() {
       </Element>
       For normal stresses, where \(i=j\), the two terms are equal and the expression
       simplifies into a single term. Otherwise, the two terms account for the
-      angular distortion. Note that this equation is only valid for 2D. See more about{" "}
+      angular distortion. See more about{" "}
       <a href="https://en.wikipedia.org/wiki/Strain_(mechanics)">strain</a>{" "}
       here.
       <br />
@@ -559,9 +558,7 @@ export default function Navier2DArticle() {
             \textbf{tr(e)} = \nabla \cdot \textbf u \tag{25}
             \]`}
       </Element>
-      The Stress Deviator Tensor, first mentioned in{" "}
-      <Link to="eq-18" smooth={true} offset={-100}>Eq. 18</Link>
-      , can (for reasons beyond the scope of this article) be expressed in terms of
+      The Stress Deviator Tensor can (for reasons beyond the scope of this article) be expressed in terms of
       the Strain-Rate Tensor. The relationship is fixed by two physical
       constants, \(A\) and \(B\), shown below:
       {String.raw`\[
@@ -596,7 +593,7 @@ export default function Navier2DArticle() {
         <Element name="eq-28">
           {String.raw`\[
         
-                  \boxed{\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \nabla \cdot \Big[ \lambda (\nabla \cdot \textbf u) \textbf I \Big] + \textbf a } \tag{28}
+                  \boxed{\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \nabla \cdot \Big[ \lambda (\nabla \cdot \textbf u) \textbf I \Big] + \rho \textbf a } \tag{28}
         
                   \]`}
         </Element>
@@ -622,14 +619,7 @@ export default function Navier2DArticle() {
           \]`}
       </div>
       If some integral over an arbitrary bound will <em>always</em> be zero,
-      then the integrand must be zero (
-      <em>
-        This is a mathematical result of the{" "}
-        <a href="https://en.wikipedia.org/wiki/Fundamental_lemma_of_the_calculus_of_variations">
-          Fundamental Lemma of the Calculus of Variations
-        </a>
-      </em>
-      ). Taking the integrand out of the integral leaves:
+      then the integrand must be zero. Taking the integrand out of the integral leaves:
       <Element name="eq-29">
         {String.raw`\[
             0=\frac{D\rho}{Dt}+\rho(\nabla \cdot \textbf{u}) \tag{29}
@@ -662,7 +652,6 @@ export default function Navier2DArticle() {
       <br />
       Incompressible fluids have the following ideal properties:
       <ol>
-        <li>\(\lambda = 0\)</li>
         <li>\(D\mu / Dt = 0\) (i.e. \(\mu \) is constant.)</li>
         <li>\(D \rho / Dt = 0 \) (i.e. \(\rho \) is constant.)</li>
       </ol>
@@ -681,25 +670,25 @@ export default function Navier2DArticle() {
       </Element>
       This is the <strong>Continuity Equation for Incompressible Fluids</strong>
       .<h3>Reduced Navier-Stokes Equations</h3>
-      Because \(\lambda = 0\),{" "}
+      Because \(\nabla \cdot \textbf u = 0\),{" "}
       <Link to="eq-28" smooth={true} offset={-100}>
         Eq. 28
       </Link>{" "}
       reduces to:
       <div className="long-horiz">
         {String.raw`
-          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \cancel{\nabla \cdot \Big[ \lambda (\nabla \cdot \textbf u) \textbf I \Big]} + \textbf a\]
-          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \textbf a\]
+          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \cancel{\nabla \cdot \Big[ \lambda (\nabla \cdot \textbf u) \textbf I \Big]} + \rho \textbf a\]
+          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \nabla \cdot \Big[\mu \left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \rho \textbf a\]
           `}
       </div>
       Then, because \(\mu\) is a constant, the right-hand side can be
       rearranged as:
       <div className="long-horiz">
         {String.raw`
-          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \mu \nabla \cdot \Big[\left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \textbf a\]
+          \[\rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \mu \nabla \cdot \Big[\left(\nabla \textbf u +(\nabla \textbf u)^T\right)\Big]+ \rho \textbf a\]
           `}
       </div>
-      And, because{" "}
+      And, again because{" "}
       <Link to="eq-31" smooth={true} offset={-100}>
         Eq. 31
       </Link>{" "}
@@ -707,13 +696,13 @@ export default function Navier2DArticle() {
       (\nabla \textbf u + (\nabla \textbf u)^T)\) reduces to \(\nabla ^2 \textbf
       u\), leaving:
       {String.raw`
-        \[ \rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \mu \nabla^2 \textbf u + \textbf a \]
+        \[ \rho\left(\frac{\partial \textbf u }{\partial t}+\textbf u \cdot \nabla \textbf u \right)=-\nabla p + \mu \nabla^2 \textbf u + \rho \textbf a \]
         `}
       Rearranging this equation for \(\partial \textbf u / \partial t\) yields:
       <div className="long-horiz">
         <Element name="eq-32">
           {String.raw`\[
-              \boxed{\frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\textbf a-(\textbf u \cdot \nabla \textbf u)} \tag{32}
+              \boxed{\frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\rho \textbf a-(\textbf u \cdot \nabla \textbf u)} \tag{32}
               \]`}
         </Element>
       </div>
@@ -951,7 +940,7 @@ export default function Navier2DArticle() {
       ends up with a sharp peak like this, and we can see how this can cause the
       simulation to diverge.
       {String.raw`\[
-            \frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \frac{1}{\rho}\textbf a- \underbrace{(\textbf u \cdot \nabla \textbf u)}_{\text{advection}}
+            \frac{\partial \textbf u}{\partial t}= - \frac{1}{\rho} \nabla p+ \frac{\mu}{\rho} \nabla ^2 \textbf u + \textbf a- \underbrace{(\textbf u \cdot \nabla \textbf u)}_{\text{advection}}
         \]`}
       As mentioned, the peak is underestimated and the immediate surroundings
       are overestimated. Because the convective term is part of the time step{" "}
@@ -1082,11 +1071,11 @@ export default function Navier2DArticle() {
         \frac{\partial \textbf u}{\partial t} = 
         \underbrace{- \frac{1}{\rho} \nabla p}_{\text{pressure}} + 
         \underbrace{\frac{\mu}{\rho} \nabla^2 \textbf u}_{\text{viscous}} + 
-        \underbrace{\frac{1}{\rho} \textbf a}_{\text{external}} - 
+        \underbrace{\textbf a}_{\text{external}} - 
         \underbrace{(\textbf u \cdot \nabla \textbf u)}_{\text{advective}}
         \]`}
       To simplify things in this simulation, we'll let{" "}
-      {String.raw`\(\frac{1}{\rho} \textbf a = 0 \)`} and only worry about the
+      {String.raw`\(\textbf a = 0 \)`} and only worry about the
       other terms. Because \(\textbf a \) is an <em>external</em> field, it
       would be given anyways and not require any solving.
 
@@ -1295,13 +1284,13 @@ export default function Navier2DArticle() {
       the <em>velocity with neglected pressure</em>. This can be found by
       discretizing the Navier-Stokes Equation without the \(- \nabla p\) term:
       {String.raw`\[
-            \rho \frac{\textbf u^*-\textbf u_i}{\Delta t}=\mu \nabla^2\textbf u_i+\textbf a_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)
+            \rho \frac{\textbf u^*-\textbf u_i}{\Delta t}=\mu \nabla^2\textbf u_i+\rho \textbf a_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)
         \]`}
       Rearranged for \(\textbf u^*\), this is:
       <div className="long-horiz">
         <Element name="eq-44">
           {String.raw`\[
-                  \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\textbf a_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right) \tag{44}
+                  \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\rho \textbf a_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right) \tag{44}
               \]`}
         </Element>
       </div>
@@ -1397,14 +1386,11 @@ export default function Navier2DArticle() {
       For this simulation, the following boundary conditions are enforced:
       <ol>
         <li>
-          There is <strong>no slip</strong> on the walls, meaning that the fluid
+          There is <strong>free slip</strong> on the walls, meaning that the fluid
           touching the wall moves at the same rate as the rest of the fluid.
           Mathematically, this is \(\partial \textbf u / \partial \eta = 0\)
           (where \(\eta\) represents any spatial axis). Because the derivative is constrained, this is a <strong>Neumann</strong>{" "}
-          boundary condition. For a more realistic scenario (e.g., microflows or
-          rarefied gases), partial slip can be allowed by setting a nonzero slip
-          length or surface velocity, rather than enforcing a strict no-slip
-          condition.
+          boundary condition.
         </li>
         <li>
           The fluid pressure within the solid object is zero. This sets a
@@ -1633,7 +1619,7 @@ export default function Navier2DArticle() {
           </Link>
           ,
           {String.raw`\[
-                \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\textbf f_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right)
+                \textbf u^*=\textbf u_i+\frac{\Delta t}{\rho}\left(\mu \nabla^2\textbf u_i+\rho \textbf a_i- \rho(\textbf u_i \cdot \nabla \textbf u_i)\right)
             \]`}
         </li>
         <li>
