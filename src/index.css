@@ -31,10 +31,28 @@
   }
 }
 
+html {
+  -webkit-text-size-adjust: 100%; /* iOS Safari */
+  -ms-text-size-adjust: 100%; /* IE Mobile */
+  text-size-adjust: 100%; /* Modern browsers */
+  width: 100vw;
+}
+
 body {
   font-family: "Averia Serif Libre", serif;
   margin: 0;
   background-color: var(--background);
+  max-width: 100%;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+[id]::before {
+  content: "";
+  display: block;
+  height: 100px; /* height of your fixed header */
+  margin-top: -100px;
+  visibility: hidden;
 }
 
 .averia-serif-libre-light {

@@ -212,6 +212,7 @@
 #landing-page .featured-container h2 {
   font-size: 48px;
   font-weight: 300;
+  margin-top: 100px;
 }
 
 #landing-page .featued-project-pane {
@@ -298,7 +299,7 @@
 
 @media (max-width: 1000px) {
   #landing-page .featued-project-pane {
-    max-width: 400px;
+    max-width: 700px;
     flex-direction: column;
   }
 
@@ -329,12 +330,17 @@
 
 @media (max-width: 1000px) {
   #landing-page .nav-card-container {
-    max-width: 400px;
+    max-width: 500px;
     flex-direction: column;
     gap: 30px;
+    width: 80%;
   }
 
   #landing-page .nav-card-container .right {
     margin-left: 0px;
+  }
+
+  #landing-page .featued-project-pane #featured-action-btn {
+    padding: 12px 40px;
   }
 }

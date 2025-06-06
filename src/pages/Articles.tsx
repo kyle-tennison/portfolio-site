@@ -26,6 +26,14 @@ export default function Articles() {
           }
           link={"articles/franklin"}
         />
+        <ArticleCard
+          title={"Navier-2D"}
+          date={"May 2025"}
+          description={
+            "Introductory explanation of solving the Navier-Stokes equation in 2D for a non-compressible Newtonian fluid using finite differences."
+          }
+          link={"articles/navier-2d"}
+        />
       </div>
 
       <Footer />

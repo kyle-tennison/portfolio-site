@@ -183,7 +183,9 @@ export default function FranklinArticle() {
         (i.e., the next angular velocity of the wheels) given \(f(t_i)\) (i.e.,
         the value read from the accelerometer). Since we know \(f(t_j)\) for \(j
         = 0, 1, \dots, i\), we can also approximate the following:
-        {String.raw`\[\int \limits _0^{t_i} f(\tau)\,d\tau \approx \sum _{j=0}^i f(t_j)(t_j-t_{j-1}) \qquad \text{and} \qquad \frac{df(t)}{dt} \approx \frac{f(t_i)-f(t_{i-1})}{t_i-t_{i-1}} \]`}
+        {String.raw`\[\int \limits _0^{t_i} f(\tau)\,d\tau \approx \sum _{j=0}^i f(t_j)(t_j-t_{j-1})\]`}
+        and
+        {String.raw`\[\frac{df(t)}{dt} \approx \frac{f(t_i)-f(t_{i-1})}{t_i-t_{i-1}} \]`}
         This likely seems more complicated than it really is. Below is the
         function that actually implements the PID loop:
         <img src={pidCode} alt="Example PID code" />
