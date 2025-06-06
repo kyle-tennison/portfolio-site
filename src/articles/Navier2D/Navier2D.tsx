@@ -2,7 +2,6 @@ import { Link, Element } from "react-scroll";
 
 import materialElementPhoto from "./material-element.png";
 import materialElementDxPhoto from "./material-element-dx.png";
-import simAnimation from "./sim-animation.gif";
 import carSim from "./car-sim.gif";
 import gridDiagram from "./grid-diagram.png";
 import rippleAirfoil from "./ripple-airfoil.png";
