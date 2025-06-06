@@ -2,6 +2,8 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProjectCard from "../components/ProjectCard";
 
+import carSimGif from "../articles/Navier2D/car-sim.gif"
+
 import "../styles/Projects.css";
 
 export default function Projects() {
@@ -25,6 +27,15 @@ export default function Projects() {
           buttonText="View Site"
           buttonIcon={<i className="bi bi-box-arrow-up-right"></i>}
           link="https://github.com/kyle-tennison/pyrite"
+        />
+
+        <ProjectCard
+          image={carSimGif}
+          title="navier-2d"
+          description="Transient, two-dimensional CFD in Rust for incompressible, isotropic, Newtonian flows."
+          buttonText="Read Article"
+          buttonIcon={<i className="bi bi-book"></i>}
+          link="/articles/navier-2d"
         />
 
         <ProjectCard
