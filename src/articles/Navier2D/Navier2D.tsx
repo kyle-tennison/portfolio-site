@@ -17,7 +17,7 @@ export default function Navier2DArticle() {
       title="Navier-2D"
       description="Introductory explanation of solving the Navier-Stokes equation in 2D for an incompressible Newtonian fluid using finite differences."
       date="May 2025"
-      readTime="5 minutes"
+      readTime="15 minutes"
       titleImage="https://kyletennison.b-cdn.net/wind-tunnel-background.webp"
     >
       <h1>Overview</h1>
