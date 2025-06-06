@@ -1003,7 +1003,7 @@ export default function Navier2DArticle() {
       the same as \((\nabla \cdot \textbf u)\). Mathematically (in 2D):
       <div className="long-horiz">
         {String.raw`\[(\textbf u \cdot \nabla)\textbf F = u \frac{\partial \textbf F}{\partial x}+v \frac{\partial \textbf F}{\partial y}=\begin{bmatrix}
-          u (\partial F_x/\partial x)+v(\partial F_x/\partial y)\
+          u (\partial F_x/\partial x)+v(\partial F_x/\partial y)\\
           u (\partial F_y/\partial x)+ v(\partial F_y/\partial y)
           \end{bmatrix} \tag{39}
           \]`}
