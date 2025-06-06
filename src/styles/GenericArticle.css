@@ -27,6 +27,7 @@
   z-index: 10;
   margin-left: calc(-1 * env(safe-area-inset-left));
   margin-right: calc(-1 * env(safe-area-inset-right));
+  overflow-y: hidden;
 }
 
 #generic-article .title-text .background {
@@ -74,8 +75,8 @@
   box-sizing: border-box;
 }
 
-#generic-article .article-body img, 
-#generic-article .article-body video, 
+#generic-article .article-body img,
+#generic-article .article-body video,
 #generic-article .article-body .youtube {
   max-width: 50%;
   max-height: 500px;
@@ -121,7 +122,8 @@
   font-size: 12px;
 }
 
-#generic-article .article-body .codeblock code, pre {
+#generic-article .article-body .codeblock code,
+pre {
   -webkit-text-size-adjust: 100%;
 }
 
