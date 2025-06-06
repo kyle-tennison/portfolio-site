@@ -15,7 +15,11 @@ import "aos/dist/aos.css";
 function App() {
   window.alert = (msg) => toast(msg); // override alert
   useEffect(() => {
-    AOS.init({ duration: 500 });
+    const isMobile = window.innerWidth < 768;
+    AOS.init({
+      duration: 500,
+      offset: isMobile ? 50 : 200,
+    });
   }, []);
 
   return (
