@@ -189,10 +189,10 @@ export default function FranklinArticle() {
         This likely seems more complicated than it really is. Below is the
         function that actually implements the PID loop:
         <img src={pidCode} alt="Example PID code" />
-        The <em className="code">integral</em> variable starts at zero at the
+        The <code className="il">integral</code> variable starts at zero at the
         beginning of the program and gets incremented or decremented to
         approximate the integral. The variable{" "}
-        <em className="code">previous</em>, representing{" "}
+        <code className="il">previous</code>, representing{" "}
         {String.raw`\(f(t_{i-1})\)`}, helps approximate the derivative via
         finite difference.
         <br />
