@@ -72,6 +72,7 @@ export default function Projects() {
           buttonText="View Site"
           buttonIcon={<i className="bi bi-box-arrow-up-right"></i>}
           link="https://ragposium.com"
+          disable={true}
         />
 
         <ProjectCard

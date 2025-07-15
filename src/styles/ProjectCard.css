@@ -65,6 +65,10 @@
   justify-content: center;
 }
 
+.project-card .project-card-button:disabled {
+  opacity: 50%;
+  cursor:not-allowed;
+}
 .project-card .project-card-button:hover {
   background-color: #3a3732;
   color: #f0eee9;

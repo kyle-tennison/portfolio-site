@@ -8,6 +8,7 @@ interface ProjectCardProps {
   buttonText: string;
   buttonIcon: React.ReactNode;
   link: string;
+  disable?: boolean;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -17,10 +18,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   buttonText,
   buttonIcon,
   link,
+  disable = false,
 }) => {
   return (
     <div className="project-card" data-aos="fade-up">
-      <img className="project-card-image" src={image} alt={title} />
+      <img
+        className="project-card-image"
+        src={image}
+        alt={title}
+      />
       <div className="project-card-content">
         <h2 className="project-card-title">{title}</h2>
         <p className="project-card-description">{description}</p>
@@ -28,10 +34,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           className="project-card-button"
           type="button"
           onClick={() => {
-            window.open(link, "_blank", "noopener,noreferrer");
+            if (!disable) {
+              window.open(link, "_blank", "noopener,noreferrer");
+            }
           }}
+          disabled={disable}
         >
-          {buttonText} <div className="project-card-icon">{buttonIcon}</div>
+          {buttonText}
+          <div className="project-card-icon">{buttonIcon}</div>
         </button>
       </div>
     </div>
