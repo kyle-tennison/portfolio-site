@@ -133,15 +133,15 @@ export default function Landing() {
               </a>{" "}
               project is a computational fluid dynamics simulation engine
               written 100% in the Rust programming language. I took on this
-              project with the goal of learning more about fluids and numeric
+              project with the goal of learning more about fluids and numerical
               problem solving.
               <br />
               <br />
-              An article detailing the inner-workings of the simulator can be{" "}
+              An article detailing the inner workings of the simulator can be{" "}
               <a href="https://kyletennison.com/articles/navier-2d">
                 found here
               </a>
-              . As always, the project's socurce code is also available on{" "}
+              . As always, the project's source code is also available on{" "}
               <a href="https://github.com/kyle-tennison">my GitHub</a>.
             </p>
           </div>
