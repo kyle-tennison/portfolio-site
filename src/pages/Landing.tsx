@@ -124,20 +124,29 @@ export default function Landing() {
             <h2>Navider 2D</h2>
             <h3>2D CFD for Incompressible Newtonian Fluids</h3>
             <p>
-              The <a href="https://github.com/kyle-tennison/navier-2d" target="_blank"><code className="il">navier-2D</code></a> project 
-              is a computational fluid dynamics simulation engine written 100% in the Rust programming language. I took 
-              on this project with the goal of learning more about fluids and numeric problem solving. 
-
-              <br/>
-              <br/>
-
-              An article detailing the inner-workings of the simulator can be <a href="https://kyletennison.com/articles/navier-2d">found here</a>. As always, the project's 
-              socurce code is also available on <a href="https://github.com/kyle-tennison">my GitHub</a>.
+              The{" "}
+              <a
+                href="https://github.com/kyle-tennison/navier-2d"
+                target="_blank"
+              >
+                <code className="il">navier-2D</code>
+              </a>{" "}
+              project is a computational fluid dynamics simulation engine
+              written 100% in the Rust programming language. I took on this
+              project with the goal of learning more about fluids and numeric
+              problem solving.
+              <br />
+              <br />
+              An article detailing the inner-workings of the simulator can be{" "}
+              <a href="https://kyletennison.com/articles/navier-2d">
+                found here
+              </a>
+              . As always, the project's socurce code is also available on{" "}
+              <a href="https://github.com/kyle-tennison">my GitHub</a>.
             </p>
           </div>
 
           <div className="right">
-                
             <div className="featured-media">
               <img src={carSimGif}></img>
             </div>
