@@ -259,6 +259,7 @@
 #landing-page .featued-project-pane .right {
   overflow: hidden;
   flex: 0 0 50%;
+  max-width: 100%;
 }
 
 #landing-page .featued-project-pane #featured-action-btn {
@@ -295,6 +296,14 @@
 
 #landing-page .featued-project-pane .aux-link:hover {
   cursor: pointer;
+}
+
+#landing-page .featued-project-pane .featured-media {
+  overflow: hidden;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
 }
 
 @media (max-width: 1000px) {
