@@ -6,6 +6,8 @@ import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import carSimGif from "../articles/Navier2D/car-sim.gif";
+
 export default function Landing() {
   const [loaded, setLoaded] = useState(false);
 
@@ -119,56 +121,53 @@ export default function Landing() {
 
         <div className="featued-project-pane">
           <div className="left">
-            <h2>Ragposium</h2>
-            <h3>A RAG powered search engine</h3>
+            <h2>Navider 2D</h2>
+            <h3>2D CFD for Incompressible Newtonian Fluids</h3>
             <p>
-              Ragposium is a RAG-based academic paper search engine aimed at
-              providing users with academic research that is related to a
-              certain topic. <br />
-              <br />
-              To try it out, go to{" "}
+              The{" "}
               <a
-                href="https://ragposium.com"
+                href="https://github.com/kyle-tennison/navier-2d"
                 target="_blank"
-                rel="noopener noreferrer"
               >
-                ragposium.com
-              </a>
-              , enter a statement that you would like supporting research about.
-              For example, try something like: <br />
+                <code className="il">navier-2D</code>
+              </a>{" "}
+              project is a computational fluid dynamics simulation engine
+              written 100% in the Rust programming language. I took on this
+              project with the goal of learning more about fluids and numerical
+              problem solving.
               <br />
-              “Under the Montreal Protocol, CFCs were replaced by HCFCs and
-              subsequently by HFCs and HFOs, each exhibiting progressively lower
-              ozone-depletion potentials.”
+              <br />
+              An article detailing the inner workings of the simulator can be{" "}
+              <a href="https://kyletennison.com/articles/navier-2d">
+                found here
+              </a>
+              . As always, the project's source code is also available on{" "}
+              <a href="https://github.com/kyle-tennison">my GitHub</a>.
             </p>
           </div>
 
           <div className="right">
-            <iframe
-              className="youtube"
-              src="https://www.youtube.com/embed/hQI-8Ccv2nw?si=IRNwOBEsqSRRqJPh?rel=0"
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
+            <div className="featured-media">
+              <img src={carSimGif}></img>
+            </div>
             <div className="horiz-center">
               <button
                 id="featured-action-btn"
                 onClick={() => {
                   window.open(
-                    "https://ragposium.com",
+                    "https://kyletennison.com/articles/navier-2d",
                     "_blank",
                     "noopener,noreferrer",
                   );
                 }}
               >
-                Try it yourself
+                Read the Article
               </button>
             </div>
           </div>
           <a
             className="aux-link"
-            href="https://github.com/kyle-tennison/ragposium"
+            href="https://github.com/kyle-tennison/articles/navier-2d"
             target="_blank"
             rel="noopener noreferrer"
           >

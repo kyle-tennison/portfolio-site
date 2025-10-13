@@ -22,11 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 }) => {
   return (
     <div className="project-card" data-aos="fade-up">
-      <img
-        className="project-card-image"
-        src={image}
-        alt={title}
-      />
+      <img className="project-card-image" src={image} alt={title} />
       <div className="project-card-content">
         <h2 className="project-card-title">{title}</h2>
         <p className="project-card-description">{description}</p>
