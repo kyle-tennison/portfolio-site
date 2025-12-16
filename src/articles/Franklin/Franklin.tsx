@@ -246,7 +246,7 @@ export default function FranklinArticle() {
         <br />
         &emsp;After getting comfortable with ESP32 development, I created a
         dual-stepper PCB with everything needed to run Franklin. Unfortunately,
-        this project remains unfinished for now; my acceptance to Georgia Tech
+        this project remains unfinished for now; my enrollment in Georgia Tech
         required me to move to Atlanta within two months of getting the news.
         I'll update this article if I ever complete the PCB assembly.
         <img src={finalPcb} alt="Final Franklin PCB render" />
