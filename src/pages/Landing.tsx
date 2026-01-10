@@ -116,7 +116,7 @@ export default function Landing() {
           </motion.div>
         </div>
       </div>
-      <div className="featured-container horiz-center" data-aos="fade-up">
+      <div className="featured-container horiz-center" data-aos="fade-up" data-aos-offset="100">
         <h2>Featured Project</h2>
 
         <div className="featued-project-pane">

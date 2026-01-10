@@ -15,7 +15,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   link,
 }) => {
   return (
-    <a href={link} className="article-card" data-aos="fade-up">
+    <a href={link} className="article-card" data-aos="fade-up" data-aos-offset="20">
       <div className="article-card-content">
         <p className="article-card-title">
           <strong>{title}</strong> &bull; <em>{date}</em>
