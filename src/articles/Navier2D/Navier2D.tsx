@@ -1465,7 +1465,7 @@ export default function Navier2DArticle() {
           style={srcery}
           customStyle={{ padding: "20px" }}
           showLineNumbers={true}
-          startingLineNumber={49}
+          startingLineNumber={45}
         >
           {String.raw`
         
