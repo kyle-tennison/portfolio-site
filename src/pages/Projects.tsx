@@ -24,9 +24,9 @@ export default function Projects() {
           image={"https://kyletennison.b-cdn.net/polybrain.webp"}
           title="Polybrain"
           description="An experimental tool for generating parametric OnShape CAD using AI."
-          buttonText="View Site"
-          buttonIcon={<i className="bi bi-box-arrow-up-right"></i>}
-          link="https://github.com/kyle-tennison/pyrite"
+          buttonText="See GitHub"
+          buttonIcon={<i className="bi bi-github"></i>}
+          link="https://github.com/PolybrainAI"
         />
 
         <ProjectCard
