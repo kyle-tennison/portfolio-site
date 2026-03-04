@@ -121,7 +121,7 @@ export default function Landing() {
 
         <div className="featued-project-pane">
           <div className="left">
-            <h2>Navider 2D</h2>
+            <h2>Navier 2D</h2>
             <h3>2D CFD for Incompressible Newtonian Fluids</h3>
             <p>
               The{" "}
@@ -167,7 +167,7 @@ export default function Landing() {
           </div>
           <a
             className="aux-link"
-            href="https://github.com/kyle-tennison/articles/navier-2d"
+            href="https://github.com/kyle-tennison/navier-2d"
             target="_blank"
             rel="noopener noreferrer"
           >
