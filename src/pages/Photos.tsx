@@ -42,7 +42,18 @@ export default function Photos() {
 
       <div className="title-text">
         <h1>Photos</h1>
-        <p>A collection of photos I've taken over the years.</p>
+        <p>
+          A collection of photos I've taken over the years. Follow me at{" "}
+          <a
+            className="instagram-plug"
+            href="https://instagram.com/kyleph0tos"
+            target="_blank"
+            referrerPolicy="no-referrer"
+          >
+            @kyleph0tos
+          </a>{" "}
+          on Instagram.
+        </p>
       </div>
 
       <div className="photos-grid">

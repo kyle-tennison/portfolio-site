@@ -42,6 +42,19 @@
   margin: 5px;
 }
 
+#photos-page .title-text .instagram-plug {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--secondary-font);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#photos-page .title-text .instagram-plug:hover {
+  color: var(--accent-primary);
+}
+
 #photos-page .photos-grid {
   width: 90%;
   max-width: 1130px;
