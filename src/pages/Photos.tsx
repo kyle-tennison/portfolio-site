@@ -131,7 +131,10 @@ export default function Photos() {
       <div className="title-text">
         <h1>Photos</h1>
         <p>
-          A collection of photos I've taken over the years. Follow me at{" "}
+          I first got into photography when I was 10 years old, and I still
+          don't know what I'm doing. I shoot a lot of 35mm on my parents' old
+          Pentax. When I can, I sometimes shoot on a Cannon 80D. This is a dump
+          of a lot of my photos; for <em>better edited</em> pictures, follow me at{" "}
           <a
             className="instagram-plug"
             href="https://www.instagram.com/kyleph0tos"
@@ -140,7 +143,7 @@ export default function Photos() {
           >
             @kyleph0tos
           </a>{" "}
-          on Instagram.
+          on Instagram (please!).
         </p>
       </div>
 
