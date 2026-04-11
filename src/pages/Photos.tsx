@@ -4,7 +4,7 @@ import Header from "../components/Header";
 
 import "../styles/Photos.css";
 
-const thumbnailModules = import.meta.glob("../photography/**/*_thumbnail.webp", {
+const thumbnailModules = import.meta.glob("../photography/**/thumbnails/*.webp", {
   eager: true,
 }) as Record<string, { default: string }>;
 
@@ -16,7 +16,6 @@ interface DisplayInfo {
   title: string;
   description: string;
   start_date?: string;
-  end_date?: string;
   display_date?: string;
 }
 
@@ -31,8 +30,8 @@ const parseDate = (d: string) => {
 
 // Build a flat list of all photos with their section
 const allPhotos = Object.entries(thumbnailModules).map(([path, mod]) => {
-  const fullPath = path.replace("_thumbnail.webp", ".webp");
-  const section = path.split("/").slice(-2)[0];
+  const fullPath = path.replace("/thumbnails/", "/");
+  const section = path.split("/").slice(-3)[0];
   return {
     thumbnail: mod.default,
     full: (fullModules[fullPath] as { default: string } | undefined)?.default ?? mod.default,
