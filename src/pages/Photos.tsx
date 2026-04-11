@@ -12,10 +12,11 @@ const fullModules = import.meta.glob("../photography/**/*.webp", {
   eager: true,
 }) as Record<string, { default: string }>;
 
+// Matches the schema of each album's displayinfo.json
 interface DisplayInfo {
   title: string;
   description: string;
-  start_date?: string;
+  date?: string;
   display_date?: string;
 }
 
@@ -40,7 +41,7 @@ const allPhotos = Object.entries(thumbnailModules).map(([path, mod]) => {
   };
 });
 
-// Build sections from displayinfo.json files, sorted descending by start_date
+// Build sections from displayinfo.json files, sorted descending by date
 const sections = Object.entries(infoModules)
   .map(([path, info]) => {
     const section = path.split("/").slice(-2)[0];
@@ -49,15 +50,15 @@ const sections = Object.entries(infoModules)
       title: info.title,
       description: info.description,
       display_date: info.display_date ?? null,
-      start_date: info.start_date ? parseDate(info.start_date) : null,
+      date: info.date ? parseDate(info.date) : null,
       photos: allPhotos.filter((p) => p.section === section),
     };
   })
   .sort((a, b) => {
-    if (a.start_date === null && b.start_date === null) return 0;
-    if (a.start_date === null) return 1;
-    if (b.start_date === null) return -1;
-    return b.start_date - a.start_date;
+    if (a.date === null && b.date === null) return 0;
+    if (a.date === null) return 1;
+    if (b.date === null) return -1;
+    return b.date - a.date;
   });
 
 // Parses [text](url) links in a string into React elements
