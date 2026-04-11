@@ -35,7 +35,6 @@ html {
   -webkit-text-size-adjust: 100%; /* iOS Safari */
   -ms-text-size-adjust: 100%; /* IE Mobile */
   text-size-adjust: 100%; /* Modern browsers */
-  width: 100vw;
 }
 
 body {
