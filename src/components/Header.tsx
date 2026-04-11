@@ -27,6 +27,9 @@ export const Header: React.FC = () => {
             >
               Resume
             </a>
+            <a href="/photos" className="averia-serif-libre-light">
+              Photos
+            </a>
             <a href="/projects" className="averia-serif-libre-light">
               Projects
             </a>
@@ -54,6 +57,9 @@ export const Header: React.FC = () => {
           className="menu-item"
         >
           Resume
+        </a>
+        <a href="/photos" className="menu-item">
+          Photos
         </a>
         <a href="/projects" className="menu-item">
           Projects

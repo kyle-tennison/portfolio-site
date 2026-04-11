@@ -4,6 +4,7 @@ import { Toaster, toast } from "react-hot-toast";
 import Landing from "./pages/Landing";
 import Articles from "./pages/Articles";
 import Projects from "./pages/Projects";
+import Photos from "./pages/Photos";
 import FranklinArticle from "./articles/Franklin/Franklin";
 import ContactArticle from "./articles/Contact/Contact";
 import Navier2DArticle from "./articles/Navier2D/Navier2D";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/photos" element={<Photos />} />
 
           {/* Article Routes */}
           <Route path="/articles/franklin" element={<FranklinArticle />} />
