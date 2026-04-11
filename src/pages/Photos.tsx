@@ -8,10 +8,9 @@ const thumbnailModules = import.meta.glob("../photography/**/*_thumbnail.webp", 
   eager: true,
 }) as Record<string, { default: string }>;
 
-const fullModules = import.meta.glob(
-  "../photography/**/!(* )*.webp",
-  { eager: true }
-) as Record<string, { default: string }>;
+const fullModules = import.meta.glob("../photography/**/*.webp", {
+  eager: true,
+}) as Record<string, { default: string }>;
 
 interface DisplayInfo {
   title: string;
