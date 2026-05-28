@@ -20,6 +20,17 @@ export default function Projects() {
       </div>
 
       <div className="projects-container">
+
+        <ProjectCard
+          image={"https://kyletennison.b-cdn.net/nv-thing-small.webp"}
+          title="Night Vision"
+          description="An Alarm Clock that can see if you've actually gotten up."
+          buttonText="Watch Video"
+          buttonIcon={<i className="bi bi-youtube"></i>}
+          link="https://youtu.be/uheuXzFU7hs?si=z7JYl0Lt6OtqTESL"
+        />
+
+
         <ProjectCard
           image={"https://kyletennison.b-cdn.net/polybrain.webp"}
           title="Polybrain"
