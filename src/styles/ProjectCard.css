@@ -58,11 +58,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+  transition: 0.2s ease;
   font-family: inherit;
   justify-content: center;
+  transform: scale(1.01);
 }
 
 .project-card .project-card-button:disabled {
@@ -70,6 +69,7 @@
   cursor: not-allowed;
 }
 .project-card .project-card-button:hover {
-  background-color: #3a3732;
-  color: #f0eee9;
+  background-color: var(--primary-font);
+  color: var(--background-hint);
+  transform: scale(1.03);
 }
