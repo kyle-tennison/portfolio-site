@@ -34,6 +34,15 @@ export default function Articles() {
           }
           link={"articles/navier-2d"}
         />
+        <ArticleCard
+          title={"Automation and the Commodification of Labor"}
+          date={"August 2026"}
+          description={
+            "An essay on how automation threatens a system that treats human labor as a commodity, and how to approach such a reality."
+          }
+          link={"/automation-and-the-commodification-of-labor.pdf"}
+          newTab
+        />
       </div>
 
       <Footer />
